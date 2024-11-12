@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pandas
+joblib
+scikit-learn
+psycopg2-binary
+sqlalchemy
+mage-ai
+dbt-core
+dbt-postgres

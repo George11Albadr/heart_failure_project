@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:13
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: heart_failure_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: test
+    ports:
+      - "5434:5432"  # Exponer el puerto 5432 para PostgreSQL
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  mage:
+    image: heart_failure_project
+    container_name: heart_failure_container
+    ports:
+      - "6789:6789"  # Puerto para Mage AI
+      - "8000:8000"  # Puerto para FastAPI
+    volumes:
+      - ./mage_ai:/home/src
+    environment:
+      MAGE_DATABASE_URL: postgresql://user:test@db:5432/heart_failure_db
+      MAGE_MODE: "server"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
