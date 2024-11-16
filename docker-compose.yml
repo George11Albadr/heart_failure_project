@@ -1,0 +1,38 @@
+
+
+services:
+  mageai:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile  # Ajustada la ruta al Dockerfile
+    image: mageai/mageai:latest
+    command: bash /app/start.sh  # Script de inicio que maneja MageAI y Swagger
+    env_file:
+      - .env  # Archivo de variables de entorno
+    environment:
+      USER_CODE_PATH: /home/src/${PROJECT_NAME}  # Ruta del proyecto en el contenedor
+      ENV: ${ENV}  # Variable para definir entorno (desarrollo, producción, etc.)
+    ports:
+      - "6789:6789"  # Puerto para MageAI
+      - "8000:8000"  # Puerto para Swagger API
+    volumes:
+      - ./app:/app  # Sincroniza la carpeta `app` con el contenedor
+      - ./docker/requirements.txt:/app/requirements.txt  # Sincroniza el archivo de requerimientos
+      - ./models:/app/models
+      - ./data:/app/data
+    restart: on-failure:5  # Reinicia el contenedor en caso de fallas
+  
+  heartDB:
+    image: postgres:13  # Versión específica de PostgreSQL
+    restart: always  # Reinicia siempre que sea necesario
+    environment:
+      POSTGRES_PASSWORD: test123  # Contraseña de usuario PostgreSQL
+      POSTGRES_USER: test  # Usuario de PostgreSQL
+      POSTGRES_DB: heartDB  # Base de datos inicial
+    ports:
+      - "5434:5432"  # Mapea el puerto 5432 del contenedor al 5434 de la máquina local
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Persiste los datos de PostgreSQL
+
+volumes:
+  postgres_data:  # Define el volumen para la base de datos
