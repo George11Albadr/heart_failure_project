@@ -1,20 +1,24 @@
-FROM rocker/shiny:latest
+# Usa una base con R y soporte para Shiny
+FROM rocker/r-ver:4.3.1
 
-# Instala las dependencias necesarias para tu aplicación Shiny
+# Instalar dependencias necesarias para la base de datos y Shiny
 RUN apt-get update && apt-get install -y \
+    libcurl4-gnutls-dev \
+    libcairo2-dev \
+    libxt-dev \
     libssl-dev \
-    libcurl4-openssl-dev \
-    && apt-get clean \
+    libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Copia tu aplicación Shiny al directorio predeterminado de Shiny Server
-COPY . /srv/shiny-server/
+# Instalar paquetes de R necesarios
+RUN R -e "install.packages(c('shiny', 'DBI', 'RPostgres'), repos = 'http://cran.rstudio.com/')"
 
-# Cambia los permisos
-RUN chown -R shiny:shiny /srv/shiny-server
+# Configurar el directorio de trabajo y copiar la aplicación
+WORKDIR /app
+COPY . /app
 
-# Exponer el puerto 3838 para Shiny Server
+# Exponer el puerto de Shiny
 EXPOSE 3838
 
-# Comando para ejecutar Shiny Server
-CMD ["/usr/bin/shiny-server"]
+# Comando para iniciar la aplicación Shiny
+CMD ["R", "-e", "shiny::runApp('/app', host = '0.0.0.0', port = 3838)"]
