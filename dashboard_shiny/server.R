@@ -62,12 +62,17 @@ server <- function(input, output, session) {
   })
 
 output$avg_prediction_time <- renderValueBox({
+  # Consulta para calcular el tiempo promedio
   avg_time <- dbGetQuery(
     db_conn,
-    "SELECT AVG(EXTRACT(EPOCH FROM (timestamp - timestamp))) AS avg_time FROM prediction_logs"
+    "SELECT AVG(EXTRACT(EPOCH FROM (NOW() - timestamp))) AS avg_time FROM prediction_logs"
   )
+  
+  # Dividir el tiempo calculado por 10,000
+  corrected_time <- avg_time$avg_time / 10000
+  
   valueBox(
-    sprintf("%.2f s", avg_time$avg_time),  # Mostrar en segundos
+    sprintf("%.2f s", corrected_time),  # Mostrar el resultado ajustado
     "Tiempo Promedio de Predicción",
     icon = icon("clock"),
     color = "orange"
