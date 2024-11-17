@@ -51,9 +51,16 @@ ui <- dashboardPage(
             width = 6
           ),
           box(
-            title = "Distribución de Tamaño de Predicciones",
-            plotOutput("response_time_dist"),
+            title = "Tiempo Promedio de Predicción por Día",
+            plotOutput("avg_prediction_time_plot"),
             width = 6
+          )
+        ),
+        fluidRow(
+          box(
+            title = "Distribución del Tiempo de Respuesta",
+            plotOutput("response_time_dist"),
+            width = 12
           )
         )
       ),
@@ -92,9 +99,104 @@ ui <- dashboardPage(
       # Atomic Scoring Test
       tabItem(
         tabName = "atomic_scoring",
-        textInput("single_input", "Entrada para predicción"),
-        actionButton("predict_atomic", "Realizar Predicción"),
-        verbatimTextOutput("atomic_prediction")
+        fluidRow(
+          box(
+            title = "Entrada de Datos para Predicción",
+            width = 12,
+            fluidRow(
+              column(
+                6, numericInput(
+                  "age", "Edad:", value = 55,
+                  min = 1, max = 120
+                )
+              ),
+              column(
+                6, selectInput(
+                  "sex", "Sexo:",
+                  choices = c("Masculino" = 1, "Femenino" = 0)
+                )
+              )
+            ),
+            fluidRow(
+              column(
+                6, numericInput(
+                  "chest_pain_type", "Tipo de Dolor Torácico:",
+                  value = 2, min = 0, max = 3
+                )
+              ),
+              column(
+                6, numericInput(
+                  "resting_bp", "Presión Arterial en Reposo:",
+                  value = 130, min = 80, max = 200
+                )
+              )
+            ),
+            fluidRow(
+              column(
+                6, numericInput(
+                  "cholesterol", "Colesterol:",
+                  value = 250, min = 100, max = 600
+                )
+              ),
+              column(
+                6, numericInput(
+                  "fasting_bs", "Glucosa en Ayunas (>120 mg/dl):",
+                  value = 1, min = 0, max = 1
+                )
+              )
+            ),
+            fluidRow(
+              column(
+                6, numericInput(
+                  "resting_ecg", "ECG en Reposo:",
+                  value = 1, min = 0, max = 2
+                )
+              ),
+              column(
+                6, numericInput(
+                  "max_hr", "Frecuencia Cardiaca Máxima:",
+                  value = 140, min = 50, max = 220
+                )
+              )
+            ),
+            fluidRow(
+              column(
+                6, numericInput(
+                  "exercise_angina", "Angina por Ejercicio (Sí=1/No=0):",
+                  value = 0, min = 0, max = 1
+                )
+              ),
+              column(
+                6, numericInput(
+                  "oldpeak", "Depresión del ST:",
+                  value = 1.5, min = 0, max = 6
+                )
+              )
+            ),
+            fluidRow(
+              column(
+                6, numericInput(
+                  "st_slope", "Pendiente del ST:",
+                  value = 2, min = 0, max = 2
+                )
+              ),
+              column(
+                6, numericInput(
+                  "heart_disease", "Enfermedad Cardíaca (Sí=1/No=0):",
+                  value = 1, min = 0, max = 1
+                )
+              )
+            ),
+            actionButton("predict_atomic", "Realizar Predicción")
+          )
+        ),
+        fluidRow(
+          box(
+            title = "Resultado de la Predicción",
+            verbatimTextOutput("atomic_prediction"),
+            width = 12
+          )
+        )
       )
     )
   )
