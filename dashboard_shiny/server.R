@@ -184,6 +184,75 @@ output$avg_prediction_time <- renderValueBox({
     metrics <- dbGetQuery(db_conn, "SELECT * FROM prediction_logs LIMIT 100")
     datatable(metrics)
   })
+
+  # Agregar gráficas de métricas
+output$auc_plot <- renderPlot({
+  metrics_data <- dbGetQuery(db_conn, "
+    SELECT timestamp, auc
+    FROM evaluations
+    ORDER BY timestamp
+  ")
+  ggplot(metrics_data, aes(x = timestamp, y = auc)) +
+    geom_line(color = "blue") +
+    geom_point(color = "black") +
+    labs(
+      title = "Histórico de AUC del Modelo",
+      x = "Fecha de Evaluación",
+      y = "AUC"
+    ) +
+    theme_minimal()
+})
+
+output$precision_plot <- renderPlot({
+  metrics_data <- dbGetQuery(db_conn, "
+    SELECT timestamp, precision
+    FROM evaluations
+    ORDER BY timestamp
+  ")
+  ggplot(metrics_data, aes(x = timestamp, y = precision)) +
+    geom_line(color = "orange") +
+    geom_point(color = "black") +
+    labs(
+      title = "Histórico de Precisión del Modelo",
+      x = "Fecha de Evaluación",
+      y = "Precisión"
+    ) +
+    theme_minimal()
+})
+
+output$recall_plot <- renderPlot({
+  metrics_data <- dbGetQuery(db_conn, "
+    SELECT timestamp, recall
+    FROM evaluations
+    ORDER BY timestamp
+  ")
+  ggplot(metrics_data, aes(x = timestamp, y = recall)) +
+    geom_line(color = "green") +
+    geom_point(color = "black") +
+    labs(
+      title = "Histórico de Recall del Modelo",
+      x = "Fecha de Evaluación",
+      y = "Recall"
+    ) +
+    theme_minimal()
+})
+
+output$accuracy_plot <- renderPlot({
+  metrics_data <- dbGetQuery(db_conn, "
+    SELECT timestamp, accuracy
+    FROM evaluations
+    ORDER BY timestamp
+  ")
+  ggplot(metrics_data, aes(x = timestamp, y = accuracy)) +
+    geom_line(color = "red") +
+    geom_point(color = "black") +
+    labs(
+      title = "Histórico de Accuracy del Modelo",
+      x = "Fecha de Evaluación",
+      y = "Accuracy"
+    ) +
+    theme_minimal()
+})
   
   # Batch Scoring Test
   observeEvent(input$predict_batch, {
