@@ -36,6 +36,25 @@ ui <- dashboardPage(
           valueBoxOutput("total_requests"),
           valueBoxOutput("total_predictions"),
           valueBoxOutput("avg_prediction_time")
+        ),
+        fluidRow(
+          box(
+            title = "Información del Modelo Activo",
+            tableOutput("model_info"),
+            width = 12
+          )
+        ),
+        fluidRow(
+          box(
+            title = "Filas Predichas por Día",
+            plotOutput("rows_by_day"),
+            width = 6
+          ),
+          box(
+            title = "Distribución de Tamaño de Predicciones",
+            plotOutput("response_time_dist"),
+            width = 6
+          )
         )
       ),
       
