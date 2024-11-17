@@ -1,0 +1,20 @@
+FROM rocker/shiny:latest
+
+# Instala las dependencias necesarias para tu aplicación Shiny
+RUN apt-get update && apt-get install -y \
+    libssl-dev \
+    libcurl4-openssl-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copia tu aplicación Shiny al directorio predeterminado de Shiny Server
+COPY . /srv/shiny-server/
+
+# Cambia los permisos
+RUN chown -R shiny:shiny /srv/shiny-server
+
+# Exponer el puerto 3838 para Shiny Server
+EXPOSE 3838
+
+# Comando para ejecutar Shiny Server
+CMD ["/usr/bin/shiny-server"]
