@@ -1,4 +1,4 @@
-#/Users/georgealbadr/GitHub/heart_failure_project/app/start.sh
+#!/bin/bash
 
 # Inicia MageAI en segundo plano
 echo "Iniciando MageAI en el puerto 6789..."

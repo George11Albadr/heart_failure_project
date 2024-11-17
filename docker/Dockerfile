@@ -1,4 +1,3 @@
-#/Users/georgealbadr/GitHub/heart_failure_project/docker/Dockerfile
 # Usa Python 3.9-slim como base
 FROM python:3.9-slim
 

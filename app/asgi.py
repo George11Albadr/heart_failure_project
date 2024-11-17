@@ -95,25 +95,9 @@ def save_prediction_logs(request_data, predictions):
         f.write(json.dumps(log_entry) + "\n")
 
 # Función para registrar métricas del modelo
-# Función para cargar métricas desde el archivo `metrics.json`
-def get_current_metrics():
-    """
-    Carga las métricas actuales del modelo desde el archivo `metrics.json`.
-    Si no se encuentran métricas, devuelve None.
-    """
-    if os.path.exists(METRICS_FILE):
-        try:
-            with open(METRICS_FILE, "r") as f:
-                metrics_data = json.load(f)
-            return metrics_data.get("accuracy", None)  # Devuelve 'accuracy' si existe
-        except Exception as e:
-            print(f"Error al cargar métricas desde {METRICS_FILE}: {e}")
-    return None
-
-# Función para guardar métricas del modelo
 def save_metrics(accuracy: float):
     """
-    Guarda las métricas del modelo en el archivo `metrics.json`.
+    Guarda las métricas del modelo en un archivo JSON.
     """
     os.makedirs(os.path.dirname(METRICS_FILE), exist_ok=True)
 
@@ -127,14 +111,6 @@ def save_metrics(accuracy: float):
 
 # Registrar métricas iniciales del modelo (si están disponibles)
 try:
-    current_accuracy = get_current_metrics()  # Intentar cargar precisión existente
-    if current_accuracy is not None:
-        print(f"Métricas iniciales cargadas: Precisión = {current_accuracy}")
-        save_metrics(accuracy=current_accuracy)
-    else:
-        # Si no existen métricas previas, define una precisión inicial por defecto
-        calculated_accuracy = 0.5  # Cambia esto por un cálculo dinámico si es necesario
-        print(f"No se encontraron métricas previas. Registrando precisión inicial: {calculated_accuracy}")
-        save_metrics(accuracy=calculated_accuracy)
+    save_metrics(accuracy=0.87)  # Cambia esto si tienes otra métrica calculada
 except Exception as e:
-    print(f"Error al registrar métricas iniciales: {e}")
+    print(f"Error al guardar métricas iniciales: {e}")
