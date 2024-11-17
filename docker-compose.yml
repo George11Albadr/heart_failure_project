@@ -1,5 +1,4 @@
-
-
+#/Users/georgealbadr/GitHub/heart_failure_project/docker-compose.yml
 services:
   mageai:
     build:
@@ -33,6 +32,21 @@ services:
       - "5434:5432"  # Mapea el puerto 5432 del contenedor al 5434 de la máquina local
     volumes:
       - postgres_data:/var/lib/postgresql/data  # Persiste los datos de PostgreSQL
+
+  shiny_app:
+    build:
+      context: ./dashboard_shiny  # Ruta al directorio donde está el Dockerfile de Shiny
+    image: shiny_app:latest
+    ports:
+      - "80:3838"  # Puerto para Shiny App
+    environment:
+      DB_HOST: heartDB  # Conexión a la base de datos PostgreSQL
+      DB_PORT: 5432
+      DB_NAME: heartDB
+      DB_USER: test
+      DB_PASSWORD: test123
+    depends_on:
+      - heartDB  # Asegura que la base de datos esté lista antes de iniciar Shiny
 
 volumes:
   postgres_data:  # Define el volumen para la base de datos
