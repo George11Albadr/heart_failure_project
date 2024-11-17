@@ -61,20 +61,21 @@ server <- function(input, output, session) {
     )
   })
 
-output$avg_prediction_time <- renderValueBox({
-  avg_time <- dbGetQuery(
-    db_conn,
-    "SELECT AVG(EXTRACT(EPOCH FROM (timestamp - timestamp))) AS avg_time FROM prediction_logs"
-  )
-  valueBox(
-    sprintf("%.2f s", avg_time$avg_time),  # Mostrar en segundos
-    "Tiempo Promedio de Predicción",
-    icon = icon("clock"),
-    color = "orange"
-  )
-})
+  output$avg_prediction_time <- renderValueBox({
+    avg_time <- dbGetQuery(
+      db_conn,
+      "SELECT AVG(EXTRACT(EPOCH FROM (NOW() - timestamp))) AS avg_time 
+       FROM prediction_logs"
+    )
+    valueBox(
+      sprintf("%.2f s", avg_time$avg_time),  # Mostrar en segundos
+      "Tiempo Promedio de Predicción",
+      icon = icon("clock"),
+      color = "orange"
+    )
+  })
 
-  # Gráfica: Filas predichas por día (corregida)
+  # Gráfica: Filas predichas por día
   output$rows_by_day <- renderPlot({
     rows_data <- dbGetQuery(db_conn, "
       SELECT 
@@ -95,7 +96,7 @@ output$avg_prediction_time <- renderValueBox({
       theme_minimal()
   })
   
-  # Gráfica: Tiempo promedio de predicción por día (optimizada)
+  # Gráfica: Tiempo promedio de predicción por día
   output$avg_prediction_time_plot <- renderPlot({
     avg_time_data <- dbGetQuery(db_conn, "
       SELECT 
@@ -106,12 +107,12 @@ output$avg_prediction_time <- renderValueBox({
       ORDER BY prediction_date DESC
       LIMIT 30
     ")
-    ggplot(avg_time_data, aes(x = prediction_date, y = avg_time * 1000)) +
+    ggplot(avg_time_data, aes(x = prediction_date, y = avg_time)) +
       geom_line(color = "orange", size = 1) +
       labs(
         title = "Tiempo Promedio de Predicción por Día",
         x = "Fecha",
-        y = "Tiempo Promedio (ms)"
+        y = "Tiempo Promedio (s)"
       ) +
       theme_minimal()
   })
@@ -120,19 +121,16 @@ output$avg_prediction_time <- renderValueBox({
   output$response_time_dist <- renderPlot({
     response_data <- dbGetQuery(db_conn, "
       SELECT 
-        DATE(timestamp) AS response_date,
-        AVG(EXTRACT(EPOCH FROM (NOW() - timestamp))) AS avg_response_time
+        EXTRACT(EPOCH FROM (NOW() - timestamp)) AS response_time
       FROM prediction_logs
-      GROUP BY response_date
-      ORDER BY response_date DESC
-      LIMIT 30
+      LIMIT 100
     ")
-    ggplot(response_data, aes(x = response_date, y = avg_response_time * 1000)) +
-      geom_bar(stat = "identity", fill = "dodgerblue") +
+    ggplot(response_data, aes(x = response_time)) +
+      geom_histogram(binwidth = 0.1, fill = "dodgerblue", color = "black") +
       labs(
-        title = "Tiempo Promedio de Respuesta por Día",
-        x = "Fecha",
-        y = "Tiempo Promedio (ms)"
+        title = "Distribución del Tiempo de Respuesta",
+        x = "Tiempo de Respuesta (s)",
+        y = "Frecuencia"
       ) +
       theme_minimal()
   })
@@ -206,6 +204,7 @@ output$avg_prediction_time <- renderValueBox({
     
     tryCatch({
       # Construir JSON desde los inputs individuales
+      start_time <- Sys.time()
       user_input <- list(
         list(
           Age = as.integer(input$age),
@@ -251,27 +250,28 @@ output$avg_prediction_time <- renderValueBox({
       prediction_value <- jsonlite::toJSON(list(prediction[[1]]$Prediction), auto_unbox = TRUE)
       
       # Insertar el JSON original y la predicción en la base de datos
+      end_time <- Sys.time()
+      response_time <- as.numeric(difftime(end_time, start_time, units = "secs"))
+      prediction_value <- prediction[[1]]$Prediction
       dbExecute(db_conn, "
         INSERT INTO prediction_logs (timestamp, request, predictions)
         VALUES (NOW(), $1, $2)
       ", params = list(
-        jsonlite::toJSON(user_input, auto_unbox = TRUE),  # Inserta el JSON original
-        prediction_value                                 # Inserta la predicción como [0] o [1]
+        jsonlite::toJSON(user_input, auto_unbox = TRUE), 
+        jsonlite::toJSON(list(prediction_value), auto_unbox = TRUE)
       ))
-      
-      # Mostrar resultado en la UI
       output$atomic_prediction <- renderText({
-        paste("Predicción realizada con éxito. Resultado:", prediction_value)
+        paste("Predicción realizada con éxito. Resultado:", prediction_value,
+              "\nTiempo de Respuesta:", sprintf("%.2f s", response_time))
       })
     }, error = function(e) {
-      # Mostrar errores en la UI
       output$atomic_prediction <- renderText({
         paste("Error:", e$message)
       })
     })
   })
   
-  # Cerrar conexión a la base de datos al finalizar
+  # Cerrar conexión a la base de datos
   onSessionEnded(function() {
     dbDisconnect(db_conn)
   })
