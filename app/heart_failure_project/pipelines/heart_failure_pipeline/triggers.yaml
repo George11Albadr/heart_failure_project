@@ -4,11 +4,11 @@ triggers:
   last_enabled_at: 2024-11-16 10:03:29.636659
   name: refresh_heart_data
   pipeline_uuid: heart_failure_pipeline
-  schedule_interval: '@hourly'
+  schedule_interval: '@daily'
   schedule_type: time
   settings:
     landing_time_enabled: false
-    timeout: '3500'
+    timeout: '3600'
   sla: null
   start_time: 2024-11-16 10:04:00
   status: active

@@ -16,11 +16,6 @@ ui <- dashboardPage(
         icon = icon("chart-line")
       ),
       menuItem(
-        "Métricas",
-        tabName = "metrics",
-        icon = icon("chart-bar")
-      ),
-      menuItem(
         "Batch Scoring Test",
         tabName = "batch_scoring",
         icon = icon("file-upload")
@@ -91,47 +86,6 @@ ui <- dashboardPage(
       ),
 
             # Métricas
-      tabItem(
-        tabName = "metrics",
-        fluidRow(
-          column(
-            6,
-            box(
-              title = "Histórico de AUC",
-              plotOutput("auc_plot"),
-              width = 12
-            )
-          ),
-          column(
-            6,
-            box(
-              title = "Histórico de Precisión",
-              plotOutput("precision_plot"),
-              width = 12
-            )
-          )
-        ),
-        fluidRow(
-          column(
-            6,
-            box(
-              title = "Histórico de Recall",
-              plotOutput("recall_plot"),
-              width = 12
-            )
-          ),
-          column(
-            6,
-            box(
-              title = "Histórico de Accuracy",
-              plotOutput("accuracy_plot"),
-              width = 12
-            )
-          )
-        )
-      ),
-      
-      # Métricas
       tabItem(
         tabName = "metrics",
         fluidRow(
