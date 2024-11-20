@@ -3,7 +3,7 @@ services:
   mageai:
     build:
       context: .
-      dockerfile: docker/Dockerfile  # Ajustada la ruta al Dockerfile
+      dockerfile: docker/Dockerfile
     image: mageai/mageai:latest
     command: bash /app/start.sh  # Script de inicio que maneja MageAI y Swagger
     env_file:
@@ -33,20 +33,6 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data  # Persiste los datos de PostgreSQL
 
-  shiny_app:
-    build:
-      context: ./dashboard_shiny  # Ruta al directorio donde está el Dockerfile de Shiny
-    image: shiny_app:latest
-    ports:
-      - "80:3838"  # Puerto para Shiny App
-    environment:
-      DB_HOST: heartDB  # Conexión a la base de datos PostgreSQL
-      DB_PORT: 5432
-      DB_NAME: heartDB
-      DB_USER: test
-      DB_PASSWORD: test123
-    depends_on:
-      - heartDB  # Asegura que la base de datos esté lista antes de iniciar Shiny
 
 volumes:
   postgres_data:  # Define el volumen para la base de datos

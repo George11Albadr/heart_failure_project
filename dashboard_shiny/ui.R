@@ -16,6 +16,11 @@ ui <- dashboardPage(
         icon = icon("chart-line")
       ),
       menuItem(
+        "Métricas",
+        tabName = "metrics",
+        icon = icon("chart-bar")
+      ),
+      menuItem(
         "Batch Scoring Test",
         tabName = "batch_scoring",
         icon = icon("file-upload")
