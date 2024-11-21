@@ -2,182 +2,558 @@ WARNING:traitlets:Message signing is disabled.  This is insecure and not recomme
 WARNING:traitlets:Message signing is disabled.  This is insecure and not recommended!
 DBT library not installed.
 INFO:mage_ai.server.scheduler_manager:Start scheduler.
-Initializing global job manager:  <mage_ai.orchestration.job_manager.JobManager object at 0xffff6ad49a00>
+Initializing global job manager:  <mage_ai.orchestration.job_manager.JobManager object at 0xffff75f6a8b0>
 INFO:mage_ai.server.active_kernel:Switch active kernel: python3
 INFO:alembic.runtime.migration:Context impl SQLiteImpl.
 INFO:alembic.runtime.migration:Will assume non-transactional DDL.
-INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:alembic.runtime.migration:Running upgrade  -> c07a23ff782b, Add initial tables.
+INFO:alembic.runtime.migration:Running upgrade c07a23ff782b -> 52ab80005742, Add variables to pipeline schedule.
+INFO:alembic.runtime.migration:Running upgrade 52ab80005742 -> 053ee2c10d85, Add completed_at.
+INFO:alembic.runtime.migration:Running upgrade 053ee2c10d85 -> 3fafd217efa7, Add event matcher model.
+INFO:alembic.runtime.migration:Running upgrade 3fafd217efa7 -> 067326f43bc3, Add variables to PipelineRun.
+INFO:alembic.runtime.migration:Running upgrade 067326f43bc3 -> b01be687e537, Add started_at to block run
+INFO:alembic.runtime.migration:Running upgrade b01be687e537 -> 84de4cdd6126, Add sla to pipeline schedule
+INFO:alembic.runtime.migration:Running upgrade 84de4cdd6126 -> 5cd59ec4cf1d, Add passed_sla to pipeline run
+INFO:alembic.runtime.migration:Running upgrade 5cd59ec4cf1d -> 2266370f589b, Add indexes to pipeline run.
+INFO:alembic.runtime.migration:Running upgrade 2266370f589b -> 8971d4cd5b39, add event_variables and metadata to pipeline_runs
+INFO:alembic.runtime.migration:Running upgrade 8971d4cd5b39 -> ec5df57a1c60, Add metrics to block_runs
+INFO:alembic.runtime.migration:Running upgrade ec5df57a1c60 -> 7ac6fed06918, Add token column to pipeline_schedule table
+INFO:alembic.runtime.migration:Running upgrade 7ac6fed06918 -> 6aecc9bc451c, Update schedule type enum
+INFO:alembic.runtime.migration:Running upgrade 6aecc9bc451c -> 26305e46df52, Create backfills table
 INFO:mage_ai.server.server:Mage is running at http://localhost:6789 and serving project /app/heart_failure_project
 INFO:mage_ai.server.server:Initializing block cache.
 INFO:mage_ai.server.server:Initializing pipeline cache.
+INFO:alembic.runtime.migration:Running upgrade 26305e46df52 -> 1d8e65aeefdd, Add settings to pipeline schedule
+INFO:alembic.runtime.migration:Running upgrade 1d8e65aeefdd -> 97ff9f55a3c0, Create users, oauth2 applications, and oauth2 access tokens
 INFO:mage_ai.server.server:Initializing tag cache.
 INFO:mage_ai.server.server:Initializing block action object cache.
-INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
-INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
-INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
-INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
-INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
-INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
-INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
-INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
-INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
-INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
-INFO:tornado.access:304 GET /_next/static/chunks/7849-e52eeca7d1a2b973.js (172.19.0.1) 28.16ms
-INFO:tornado.access:304 GET /_next/static/chunks/4982-85811e261efb3ac7.js (172.19.0.1) 23.39ms
-INFO:tornado.access:304 GET /_next/static/chunks/3366-38098792730e685a.js (172.19.0.1) 25.53ms
-INFO:tornado.access:304 GET /_next/static/chunks/pages/pipelines/%5Bpipeline%5D/edit-e9ca358209cdf93d.js (172.19.0.1) 6.87ms
-INFO:mage_ai.server.active_kernel:Switch active kernel: python3
-INFO:mage_ai.server.active_kernel:Kernel python3 is already alive.
-INFO:tornado.access:101 GET /websocket/terminal (172.19.0.1) 2.94ms
+INFO:alembic.runtime.migration:Running upgrade 97ff9f55a3c0 -> 643b6e65e814, Add unique indexes on authentication tables
+INFO:alembic.runtime.migration:Running upgrade 643b6e65e814 -> 1f9353eddbc6, Add secrets table
+INFO:alembic.runtime.migration:Running upgrade 1f9353eddbc6 -> 847ea6602d6f, Add upstream failed to block run status
+INFO:alembic.runtime.migration:Running upgrade 847ea6602d6f -> 1a737bdee53b, Add preferences to user
+INFO:alembic.runtime.migration:Running upgrade 1a737bdee53b -> 21e31d66ccea, Add pipeline_uuid index to pipeline_schedule.
+INFO:alembic.runtime.migration:Running upgrade 21e31d66ccea -> 66e67039b8a2, Add executor_type to pipeline_run.
+INFO:alembic.runtime.migration:Running upgrade 66e67039b8a2 -> 1bfc6d904929, Add indices to schedule models.
+INFO:alembic.runtime.migration:Running upgrade 1bfc6d904929 -> 83a74eca6ea1, Create user roles, roles, and permissions
+INFO:alembic.runtime.migration:Running upgrade 83a74eca6ea1 -> e7beb59b44f9, Add repo path to pipeline schedule
+INFO:alembic.runtime.migration:Running upgrade e7beb59b44f9 -> dfe49d040487, Add condition_failed status to block run status
+INFO:alembic.runtime.migration:Running upgrade dfe49d040487 -> 90d978a8aef8, Update unique constraint for secret
+INFO:alembic.runtime.migration:Running upgrade 90d978a8aef8 -> e3593cc2191e, Add key uuid to secrets
+INFO:alembic.runtime.migration:Running upgrade e3593cc2191e -> 66928ca5b0d7, Add global_data_product_uuid to PipelineSchedule
+INFO:alembic.runtime.migration:Running upgrade 66928ca5b0d7 -> 386bcfebd48d, Create Tag and TagAssociation tables
+INFO:alembic.runtime.migration:Running upgrade 386bcfebd48d -> a38d30f2541c, Add started_at for pipeline run
+INFO:alembic.runtime.migration:Running upgrade a38d30f2541c -> 117f8c3b9c42, Add description to pipeline_schedule
+INFO:alembic.runtime.migration:Running upgrade 117f8c3b9c42 -> 526c4523d5d5, Add user_id to Roles and more entity columns to Permissions
+INFO:alembic.runtime.migration:Running upgrade 526c4523d5d5 -> 9f3b46404196, Create RolePermission table
+INFO:alembic.runtime.migration:Running upgrade 9f3b46404196 -> 03135dd2b4be, Add last_enabled_at to pipeline schedule
+INFO:alembic.runtime.migration:Running upgrade 03135dd2b4be -> df2c4628b81b, Add refresh token to oauth access token
+INFO:alembic.runtime.migration:Running upgrade df2c4628b81b -> b9a2d6d0a2c7, Add settings to backfill
+INFO:alembic.runtime.migration:Running upgrade b9a2d6d0a2c7 -> 42a14d6143f1, Update token column type
+INFO:alembic.runtime.migration:Running upgrade 42a14d6143f1 -> 0227396a216c, Add UserProject table
+/bin/sh: 1: free: not found
+INFO:heart_failure_pipeline/1/20241121T000000:{"cpu": 2.61376953125, "cpu_total": 8, "cpu_usage": 0.32672119140625, "memory": null, "memory_total": null, "memory_usage": null, "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "level": "INFO", "message": "Pipeline heart_failure_pipeline for run 1 in schedule 1 is alive.", "timestamp": 1732150713.08838, "uuid": "fe71b12e649e45c0ae311577754def37"}
+Command 'free -t -m' returned non-zero exit status 127.
+[ProcessQueue] Enqueue job block_run_1
+[Process 67] Worker pool size: 0
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: [1]
+/bin/sh: 1: free: not found
+INFO:heart_failure_pipeline/1/20241121T000000:{"cpu": 2.61376953125, "cpu_total": 8, "cpu_usage": 0.32672119140625, "memory": null, "memory_total": null, "memory_usage": null, "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "level": "INFO", "message": "Pipeline heart_failure_pipeline for run 1 in schedule 1 is alive.", "timestamp": 1732150713.533541, "uuid": "060de38db68e44d7a899d95673236740"}
+INFO:heart_failure_pipeline/1/20241121T000000:{"block_run_id": 1, "block_uuid": "load_data", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "level": "INFO", "message": "Execute PipelineRun 1, BlockRun 1: pipeline heart_failure_pipeline block load_data", "timestamp": 1732150713.660995, "uuid": "0a8e460c199d4530829047bc84dccad3"}
+INFO:heart_failure_pipeline/1/20241121T000000/load_data:{"block_run_id": 1, "block_uuid": "load_data", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "data_loader", "level": "INFO", "message": "Start executing block with BlockExecutor.", "timestamp": 1732150713.693706, "uuid": "a72d76c58ec14f09942643e2a83bfabf"}
+INFO:heart_failure_pipeline/1/20241121T000000/load_data:{"block_run_id": 1, "block_uuid": "load_data", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "data_loader", "level": "INFO", "message": "Datos cargados exitosamente: 918 filas, 12 columnas.", "timestamp": 1732150713.798934, "uuid": "a19a8cfe6d3340ae8da3898f56019e70"}
+INFO:heart_failure_pipeline/1/20241121T000000/load_data:{"block_run_id": 1, "block_uuid": "load_data", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "data_loader", "level": "INFO", "message": "--------------------------------------------------------------", "timestamp": 1732150714.115551, "uuid": "ecabdfacb47e4e609956e618988a69d7"}
+INFO:heart_failure_pipeline/1/20241121T000000/load_data:{"block_run_id": 1, "block_uuid": "load_data", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "data_loader", "level": "INFO", "message": "1/1 tests passed.", "timestamp": 1732150714.117962, "uuid": "fee51607d4dc45d181be185d284d0cd0"}
+INFO:heart_failure_pipeline/1/20241121T000000/load_data:{"block_run_id": 1, "block_uuid": "load_data", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "data_loader", "level": "INFO", "message": "Finish executing block with BlockExecutor.", "timestamp": 1732150714.118847, "uuid": "8b7cb99a52f0410e941e5919362d6249"}
+INFO:heart_failure_pipeline/1/20241121T000000:{"block_run_id": 1, "block_uuid": "load_data", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "level": "INFO", "message": "BlockRun 1 (block_uuid: load_data) completes.", "timestamp": 1732150714.165903, "uuid": "ec1a6f773398486a8d199e8ffd713eb0"}
+Run worker for job block_run_1
+[Process 67] Worker pool size: 0
+INFO:tornado.access:101 GET /websocket/terminal (172.19.0.1) 18.66ms
 INFO:terminado.websocket:TermSocket.open: tty
 INFO:terminado.management:New terminal with specified name: tty
 INFO:terminado.websocket:TermSocket.open: Opened tty
-INFO:tornado.access:304 GET /_next/static/chunks/72fdc299.18e83e06e3395a2f.js (172.19.0.1) 185.43ms
-INFO:tornado.access:304 GET /_next/static/chunks/3c0f772d.3148f1b388e7eacd.js (172.19.0.1) 188.16ms
-INFO:tornado.access:304 GET /_next/static/chunks/5c0b189e.4b9c326460aea3ac.js (172.19.0.1) 15.40ms
-INFO:tornado.access:101 GET /websocket/ (172.19.0.1) 102.12ms
-INFO:mage_ai.api.logging:[2024-11-20T23:20:15.918340][api.views] Action: detail pipelines heart_failure_pipeline  
-INFO:mage_ai.api.logging:[2024-11-20T23:20:15.918463][api.views] Latency: 0.3655 seconds
-INFO:tornado.access:200 GET /api/pipelines/heart_failure_pipeline?include_block_pipelines=true&includes_outputs=true&includes_outputs_spark=true&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 369.54ms
-INFO:tornado.access:304 GET /_next/static/chunks/3860.2a79d6f1f5b5e602.js (172.19.0.1) 3.79ms
-INFO:tornado.access:304 GET /_next/static/chunks/413.7db119c191a5dd77.js (172.19.0.1) 8.12ms
-INFO:tornado.access:304 GET /monaco-editor/min/vs/loader.js (172.19.0.1) 2.30ms
-INFO:tornado.access:304 GET /monaco-editor/min/vs/editor/editor.main.js (172.19.0.1) 17.58ms
-INFO:tornado.access:304 GET /monaco-editor/min/vs/editor/editor.main.css (172.19.0.1) 2.60ms
-INFO:tornado.access:304 GET /monaco-editor/min/vs/editor/editor.main.nls.js (172.19.0.1) 3.10ms
-INFO:tornado.access:304 GET /monaco-editor/min/vs/basic-languages/python/python.js (172.19.0.1) 3.07ms
-INFO:tornado.access:304 GET /_next/static/chunks/3898.880191695bb05845.js (172.19.0.1) 1.81ms
-INFO:tornado.access:304 GET /monaco-editor/min/vs/base/worker/workerMain.js (172.19.0.1) 5.55ms
-INFO:tornado.access:304 GET /monaco-editor/min/vs/base/common/worker/simpleWorker.nls.js (172.19.0.1) 2.36ms
-INFO:mage_ai.api.logging:[2024-11-20T23:20:17.465640][api.views] Action: list files None  
-INFO:mage_ai.api.logging:[2024-11-20T23:20:17.465775][api.views] Latency: 0.0228 seconds
-INFO:tornado.access:304 GET /api/files?include_pipeline_count=true&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 23.97ms
-INFO:mage_ai.api.logging:[2024-11-20T23:20:17.535586][api.views] Action: list data_providers None  
-INFO:mage_ai.api.logging:[2024-11-20T23:20:17.535740][api.views] Latency: 0.0314 seconds
-INFO:tornado.access:304 GET /api/data_providers?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 35.06ms
-INFO:mage_ai.api.logging:[2024-11-20T23:20:17.654222][api.views] Action: list autocomplete_items None  
-INFO:mage_ai.api.logging:[2024-11-20T23:20:17.654600][api.views] Latency: 0.1364 seconds
-INFO:tornado.access:304 GET /api/autocomplete_items?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 138.13ms
-INFO:mage_ai.api.logging:[2024-11-20T23:20:19.462976][api.views] Action: list block_templates None  
-INFO:mage_ai.api.logging:[2024-11-20T23:20:19.463739][api.views] Latency: 0.0359 seconds
-INFO:tornado.access:304 GET /api/block_templates?show_all=false&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 41.30ms
-INFO:mage_ai.api.logging:[2024-11-20T23:20:21.529214][api.views] Action: list kernels None  
-INFO:mage_ai.api.logging:[2024-11-20T23:20:21.529621][api.views] Latency: 0.0555 seconds
-INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 57.66ms
-INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
-INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
-INFO:mage_ai.api.logging:[2024-11-20T23:20:26.516744][api.views] Action: list variables heart_failure_pipeline pipelines heart_failure_pipeline
-INFO:mage_ai.api.logging:[2024-11-20T23:20:26.517180][api.views] Latency: 0.0373 seconds
-INFO:tornado.access:304 GET /api/pipelines/heart_failure_pipeline/variables?global_only=true&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 42.63ms
-INFO:mage_ai.api.logging:[2024-11-20T23:20:26.530150][api.views] Action: list global_data_products None  
-INFO:mage_ai.api.logging:[2024-11-20T23:20:26.530260][api.views] Latency: 0.0120 seconds
-INFO:tornado.access:304 GET /api/global_data_products?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 52.57ms
-INFO:mage_ai.api.logging:[2024-11-20T23:20:26.578016][api.views] Action: list secrets None  
-INFO:mage_ai.api.logging:[2024-11-20T23:20:26.578174][api.views] Latency: 0.0473 seconds
-INFO:tornado.access:304 GET /api/secrets?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 100.03ms
-INFO:mage_ai.api.logging:[2024-11-20T23:20:27.590543][api.views] Action: detail git_branches test  
-INFO:mage_ai.api.logging:[2024-11-20T23:20:27.590709][api.views] Latency: 0.1621 seconds
-INFO:tornado.access:304 GET /api/git_branches/test?_format=with_basic_details&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 163.92ms
-INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
-INFO:mage_ai.api.logging:[2024-11-20T23:20:37.760679][api.views] Action: list files None  
-INFO:mage_ai.api.logging:[2024-11-20T23:20:37.761015][api.views] Latency: 0.0315 seconds
-INFO:tornado.access:304 GET /api/files?include_pipeline_count=true&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 39.77ms
-INFO:mage_ai.api.logging:[2024-11-20T23:20:37.807512][api.views] Action: list statuses None  
-INFO:mage_ai.api.logging:[2024-11-20T23:20:37.807646][api.views] Latency: 0.0152 seconds
-INFO:tornado.access:200 GET /api/statuses?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 16.04ms
-INFO:tornado.access:304 GET /monaco-editor/min/vs/base/browser/ui/codicons/codicon/codicon.ttf (172.19.0.1) 3.59ms
-INFO:tornado.access:304 GET /_next/static/chunks/pages/pipelines/%5Bpipeline%5D-1a0d1ab496183686.js (172.19.0.1) 2.23ms
-INFO:tornado.access:304 GET /_next/static/chunks/5544-3427bdf859d76f34.js (172.19.0.1) 3.83ms
-INFO:tornado.access:304 GET /_next/static/chunks/pages/pipelines-b578b075a8d857e3.js (172.19.0.1) 4.85ms
-INFO:mage_ai.api.logging:[2024-11-20T23:20:38.289223][api.views] Action: list projects None  
-INFO:mage_ai.api.logging:[2024-11-20T23:20:38.289378][api.views] Latency: 0.4809 seconds
-INFO:tornado.access:304 GET /api/projects?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 481.50ms
-INFO:mage_ai.api.logging:[2024-11-20T23:20:38.437766][api.views] Action: list kernels None  
-INFO:mage_ai.api.logging:[2024-11-20T23:20:38.437929][api.views] Latency: 0.0261 seconds
-INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 26.93ms
-INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
-INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
-INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
-INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
-INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
-INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
-INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
-INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
-INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
-INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
-INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
-INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
-INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
-INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
-INFO:mage_ai.api.logging:[2024-11-20T23:22:13.121180][api.views] Action: list files None  
-INFO:mage_ai.api.logging:[2024-11-20T23:22:13.121654][api.views] Latency: 0.0248 seconds
-INFO:tornado.access:304 GET /api/files?include_pipeline_count=true&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 34.28ms
-INFO:mage_ai.api.logging:[2024-11-20T23:22:13.174383][api.views] Action: list kernels None  
-INFO:mage_ai.api.logging:[2024-11-20T23:22:13.174621][api.views] Latency: 0.0299 seconds
-INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 30.79ms
-INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
-INFO:tornado.access:304 GET /pipelines/heart_failure_pipeline/edit?sideview=tree (172.19.0.1) 27.20ms
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: [1]
+/bin/sh: 1: free: not found
+INFO:heart_failure_pipeline/1/20241121T000000:{"cpu": 2.7255859375, "cpu_total": 8, "cpu_usage": 0.3406982421875, "memory": null, "memory_total": null, "memory_usage": null, "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "level": "INFO", "message": "Pipeline heart_failure_pipeline for run 1 in schedule 1 is alive.", "timestamp": 1732150722.947219, "uuid": "86ecb5f2816b4eb391f37be68cba1a9a"}
+Command 'free -t -m' returned non-zero exit status 127.
+Command 'free -t -m' returned non-zero exit status 127.
+[ProcessQueue] Enqueue job block_run_2
+[Process 112] Worker pool size: 0
+INFO:heart_failure_pipeline/1/20241121T000000:{"block_run_id": 2, "block_uuid": "preprocess", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "level": "INFO", "message": "Execute PipelineRun 1, BlockRun 2: pipeline heart_failure_pipeline block preprocess", "timestamp": 1732150723.243275, "uuid": "2c18bd99d069406ab00f7e291ac6fdb6"}
+INFO:heart_failure_pipeline/1/20241121T000000/preprocess:{"block_run_id": 2, "block_uuid": "preprocess", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Start executing block with BlockExecutor.", "timestamp": 1732150723.253134, "uuid": "090e70a2117f46618b5d4ba42e9d9ef1"}
+INFO:heart_failure_pipeline/1/20241121T000000/preprocess:{"block_run_id": 2, "block_uuid": "preprocess", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Limpieza y transformaci\u00f3n de datos...", "timestamp": 1732150723.397598, "uuid": "150772a7954c4fcb8c4948c04eb1e4ff"}
+INFO:heart_failure_pipeline/1/20241121T000000/preprocess:{"block_run_id": 2, "block_uuid": "preprocess", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Validando datos...", "timestamp": 1732150723.40502, "uuid": "46490f0070e442f2b6f2fbaa1a1eecad"}
+INFO:heart_failure_pipeline/1/20241121T000000/preprocess:{"block_run_id": 2, "block_uuid": "preprocess", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Guardando datos procesados en data/processed_data.csv...", "timestamp": 1732150723.409531, "uuid": "64f9a644deb64a77aff702b9698737de"}
+INFO:heart_failure_pipeline/1/20241121T000000/preprocess:{"block_run_id": 2, "block_uuid": "preprocess", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Datos procesados y guardados exitosamente.", "timestamp": 1732150723.43022, "uuid": "df7e1457fb3a4e5cb0101c05e3b6c858"}
+INFO:heart_failure_pipeline/1/20241121T000000/preprocess:{"block_run_id": 2, "block_uuid": "preprocess", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "--------------------------------------------------------------", "timestamp": 1732150723.581546, "uuid": "2ef44b513b384495b878d0381c00cbe3"}
+INFO:heart_failure_pipeline/1/20241121T000000/preprocess:{"block_run_id": 2, "block_uuid": "preprocess", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "1/1 tests passed.", "timestamp": 1732150723.58254, "uuid": "74fa009ba86c4d8ca1662d573b742c01"}
+INFO:heart_failure_pipeline/1/20241121T000000/preprocess:{"block_run_id": 2, "block_uuid": "preprocess", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Finish executing block with BlockExecutor.", "timestamp": 1732150723.583201, "uuid": "a249fbdc9a184bf1b77acb475833b145"}
+INFO:heart_failure_pipeline/1/20241121T000000:{"block_run_id": 2, "block_uuid": "preprocess", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "level": "INFO", "message": "BlockRun 2 (block_uuid: preprocess) completes.", "timestamp": 1732150723.634897, "uuid": "e3899f7fccf34dbc9e3253262eb725a6"}
+Run worker for job block_run_2
+[Process 112] Worker pool size: 0
+INFO:mage_ai.api.logging:[2024-11-21T00:58:49.741489][api.views] Action: list files None  
+INFO:mage_ai.api.logging:[2024-11-21T00:58:49.746023][api.views] Latency: 0.2378 seconds
+INFO:tornado.access:304 GET /api/files?include_pipeline_count=true&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 270.53ms
+INFO:mage_ai.api.logging:[2024-11-21T00:58:49.986486][api.views] Action: list kernels None  
+INFO:mage_ai.api.logging:[2024-11-21T00:58:49.986685][api.views] Latency: 0.2315 seconds
+INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 233.70ms
+INFO:tornado.access:304 GET /pipelines/heart_failure_pipeline/edit?sideview=tree (172.19.0.1) 23.75ms
 INFO:terminado.websocket:Websocket closed
-INFO:tornado.access:304 GET /_next/static/chunks/webpack-b9a067f3bd0a3a05.js (172.19.0.1) 3.62ms
-INFO:tornado.access:304 GET /_next/static/css/18782af6d2c4e826.css (172.19.0.1) 4.07ms
-INFO:tornado.access:304 GET /_next/static/pLWT6Sqd09xYpufCVIqnz/_buildManifest.js (172.19.0.1) 2.11ms
-INFO:tornado.access:304 GET /_next/static/chunks/framework-ea07653270784974.js (172.19.0.1) 3.97ms
-INFO:tornado.access:304 GET /_next/static/chunks/main-f39b6301263551db.js (172.19.0.1) 5.08ms
-INFO:tornado.access:304 GET /_next/static/chunks/pages/_app-5bdff745074fb350.js (172.19.0.1) 14.79ms
-INFO:tornado.access:304 GET /_next/static/chunks/pages/index-00ff043e2b1e43f2.js (172.19.0.1) 15.81ms
-INFO:tornado.access:304 GET /_next/static/pLWT6Sqd09xYpufCVIqnz/_ssgManifest.js (172.19.0.1) 2.47ms
-INFO:mage_ai.api.logging:[2024-11-20T23:22:14.700655][api.views] Action: list projects None  
-INFO:mage_ai.api.logging:[2024-11-20T23:22:14.700864][api.views] Latency: 0.0192 seconds
-INFO:tornado.access:304 GET /api/projects?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 20.14ms
-INFO:mage_ai.api.logging:[2024-11-20T23:22:14.708278][api.views] Action: list statuses None  
-INFO:mage_ai.api.logging:[2024-11-20T23:22:14.708393][api.views] Latency: 0.0070 seconds
-INFO:tornado.access:304 GET /api/statuses?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 27.30ms
-INFO:tornado.access:304 GET /favicon.ico (172.19.0.1) 2.02ms
+INFO:mage_ai.api.logging:[2024-11-21T00:58:50.539691][api.views] Action: list statuses None  
+INFO:mage_ai.api.logging:[2024-11-21T00:58:50.540098][api.views] Latency: 0.0798 seconds
+INFO:tornado.access:200 GET /api/statuses?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 83.49ms
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
 INFO:mage_ai.server.active_kernel:Switch active kernel: python3
 INFO:mage_ai.server.active_kernel:Kernel python3 is already alive.
-INFO:tornado.access:101 GET /websocket/terminal (172.19.0.1) 0.73ms
+INFO:tornado.access:101 GET /websocket/terminal (172.19.0.1) 20.21ms
 INFO:terminado.websocket:TermSocket.open: tty
 INFO:terminado.websocket:TermSocket.open: Opened tty
-INFO:mage_ai.api.logging:[2024-11-20T23:22:14.933652][api.views] Action: detail pipelines heart_failure_pipeline  
-INFO:mage_ai.api.logging:[2024-11-20T23:22:14.933861][api.views] Latency: 0.0715 seconds
-INFO:tornado.access:304 GET /api/pipelines/heart_failure_pipeline?include_block_pipelines=true&includes_outputs=true&includes_outputs_spark=true&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 72.88ms
-INFO:tornado.access:304 GET /fonts/Roboto/Roboto-Medium.ttf (172.19.0.1) 4.74ms
-INFO:tornado.access:304 GET /fonts/Fira_Code/ttf/FiraCode-Regular.ttf (172.19.0.1) 9.19ms
-INFO:tornado.access:304 GET /fonts/Roboto/Roboto-Bold.ttf (172.19.0.1) 10.34ms
-INFO:tornado.access:304 GET /fonts/Roboto/Roboto-Regular.ttf (172.19.0.1) 11.11ms
-INFO:tornado.access:101 GET /websocket/ (172.19.0.1) 0.33ms
-INFO:tornado.access:304 GET /fonts/Fira_Code/ttf/FiraCode-Bold.ttf (172.19.0.1) 3.01ms
-INFO:tornado.access:304 GET /_next/static/chunks/5699-e49718dfc9eb2854.js (172.19.0.1) 3.45ms
-INFO:tornado.access:304 GET /_next/static/chunks/pages/settings/workspace/preferences-7b02bb70462144cb.js (172.19.0.1) 6.21ms
-INFO:mage_ai.api.logging:[2024-11-20T23:22:16.488492][api.views] Action: list files None  
-INFO:mage_ai.api.logging:[2024-11-20T23:22:16.488728][api.views] Latency: 0.0199 seconds
-INFO:tornado.access:304 GET /api/files?include_pipeline_count=true&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 22.39ms
-INFO:mage_ai.api.logging:[2024-11-20T23:22:16.505969][api.views] Action: list autocomplete_items None  
-INFO:mage_ai.api.logging:[2024-11-20T23:22:16.506099][api.views] Latency: 0.0133 seconds
-INFO:tornado.access:304 GET /api/autocomplete_items?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 16.05ms
-INFO:mage_ai.api.logging:[2024-11-20T23:22:16.520660][api.views] Action: list data_providers None  
-INFO:mage_ai.api.logging:[2024-11-20T23:22:16.520791][api.views] Latency: 0.0300 seconds
-INFO:tornado.access:304 GET /api/data_providers?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 30.70ms
-INFO:mage_ai.api.logging:[2024-11-20T23:22:18.497260][api.views] Action: list block_templates None  
-INFO:mage_ai.api.logging:[2024-11-20T23:22:18.497557][api.views] Latency: 0.0131 seconds
-INFO:tornado.access:304 GET /api/block_templates?show_all=false&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 14.93ms
-INFO:mage_ai.api.logging:[2024-11-20T23:22:20.510091][api.views] Action: list kernels None  
-INFO:mage_ai.api.logging:[2024-11-20T23:22:20.510892][api.views] Latency: 0.0436 seconds
-INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 48.41ms
+INFO:tornado.access:101 GET /websocket/ (172.19.0.1) 3.72ms
+INFO:mage_ai.api.logging:[2024-11-21T00:58:51.010139][api.views] Action: detail pipelines heart_failure_pipeline  
+INFO:mage_ai.api.logging:[2024-11-21T00:58:51.011440][api.views] Latency: 0.2720 seconds
+INFO:tornado.access:200 GET /api/pipelines/heart_failure_pipeline?include_block_pipelines=true&includes_outputs=true&includes_outputs_spark=true&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 280.24ms
+INFO:mage_ai.api.logging:[2024-11-21T00:58:51.515972][api.views] Action: list projects None  
+INFO:mage_ai.api.logging:[2024-11-21T00:58:51.516615][api.views] Latency: 0.9745 seconds
+INFO:tornado.access:304 GET /api/projects?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 1062.85ms
+INFO:mage_ai.api.logging:[2024-11-21T00:58:51.849013][api.views] Action: list files None  
+INFO:mage_ai.api.logging:[2024-11-21T00:58:51.849780][api.views] Latency: 0.0572 seconds
+INFO:tornado.access:304 GET /api/files?include_pipeline_count=true&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 63.27ms
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: [1]
+/bin/sh: 1: free: not found
+INFO:heart_failure_pipeline/1/20241121T000000:{"cpu": 2.83642578125, "cpu_total": 8, "cpu_usage": 0.35455322265625, "memory": null, "memory_total": null, "memory_usage": null, "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "level": "INFO", "message": "Pipeline heart_failure_pipeline for run 1 in schedule 1 is alive.", "timestamp": 1732150732.305973, "uuid": "e65147a70b86481ba9977cadd031a674"}
+Command 'free -t -m' returned non-zero exit status 127.
+[ProcessQueue] Enqueue job block_run_3
+[Process 143] Worker pool size: 0
+INFO:heart_failure_pipeline/1/20241121T000000:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "level": "INFO", "message": "Execute PipelineRun 1, BlockRun 3: pipeline heart_failure_pipeline block train_model", "timestamp": 1732150732.553434, "uuid": "9ddb919533a849cba0cf30dbaf53c9e7"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Start executing block with BlockExecutor.", "timestamp": 1732150732.574276, "uuid": "5349143c908a406b957478c17dbc8be5"}
+INFO:mage_ai.api.logging:[2024-11-21T00:58:52.822438][api.views] Action: list data_providers None  
+INFO:mage_ai.api.logging:[2024-11-21T00:58:52.824515][api.views] Latency: 0.2166 seconds
+INFO:tornado.access:304 GET /api/data_providers?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 237.01ms
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Datos recibidos para entrenamiento: (918, 12)", "timestamp": 1732150733.411583, "uuid": "0a7b83e8c27d40e7bb8e672f71b8fcb1"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Vista previa de los datos:", "timestamp": 1732150733.418831, "uuid": "68ba707ed1d5418bb1e3b98715ce9fd1"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "   Age  Sex  ChestPainType  ...  Oldpeak  ST_Slope  HeartDisease", "timestamp": 1732150733.490697, "uuid": "35e7c8521c1f4954aecc6728d9f13d05"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "0   40    1              0  ...      0.0         0             0", "timestamp": 1732150733.491327, "uuid": "c562f003573d45d79c21bca5e3b1e269"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "1   49    0              1  ...      1.0         1             1", "timestamp": 1732150733.491589, "uuid": "e6a80b03da554cd9bcd5c824bf730652"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "2   37    1              0  ...      0.0         0             0", "timestamp": 1732150733.492218, "uuid": "a8873beee65b47bb8505e777753a3d10"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "3   48    0              2  ...      1.5         1             1", "timestamp": 1732150733.497394, "uuid": "b83abdc986ea4417a58ae1281f8ce41d"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "4   54    1              1  ...      0.0         0             0", "timestamp": 1732150733.500527, "uuid": "4c46b7a908a64aae9e0c42fdc38b737d"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "5   39    1              1  ...      0.0         0             0", "timestamp": 1732150733.50449, "uuid": "a003380c174e410aa4b743ef88361f35"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "6   45    0              0  ...      0.0         0             0", "timestamp": 1732150733.571243, "uuid": "d96417c3afa548fdb8f768d58168e8ce"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "7   54    1              0  ...      0.0         0             0", "timestamp": 1732150733.574127, "uuid": "e8fb3d52cc634c0b9aff719bbc0e6284"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "8   37    1              2  ...      1.5         1             1", "timestamp": 1732150733.579789, "uuid": "3cbb715b1a3746bebdf4d3b591618c7c"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "9   48    0              0  ...      0.0         0             0", "timestamp": 1732150733.585264, "uuid": "860206ef4a0846618a087dc7a67ec148"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "", "timestamp": 1732150733.586088, "uuid": "3a5991bfedbd4c5f96264e61b1b2e238"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "[10 rows x 12 columns]", "timestamp": 1732150733.58662, "uuid": "0bc70474883a445984d79d8bb3f42925"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Entrenando el modelo Random Forest...", "timestamp": 1732150733.638157, "uuid": "abbf594027dd4e48933ace1e923424e2"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Evaluando el modelo...", "timestamp": 1732150734.080021, "uuid": "d140b206f972462cabc63602dd3f90c1"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Precisi\u00f3n del modelo: 0.88", "timestamp": 1732150734.107335, "uuid": "554a1ba8857a4f05a5e54fde63fbb963"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Guardando el modelo en models/trained_model.joblib...", "timestamp": 1732150734.108245, "uuid": "eb8d2f10223f433997e60e9539f8e402"}
+INFO:mage_ai.api.logging:[2024-11-21T00:58:54.815515][api.views] Action: list block_templates None  
+INFO:mage_ai.api.logging:[2024-11-21T00:58:54.823711][api.views] Latency: 0.2689 seconds
+INFO:tornado.access:304 GET /api/block_templates?show_all=false&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 306.24ms
+INFO:mage_ai.api.logging:[2024-11-21T00:58:56.821066][api.views] Action: list kernels None  
+INFO:mage_ai.api.logging:[2024-11-21T00:58:56.825800][api.views] Latency: 0.1646 seconds
+INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 187.93ms
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Entrenamiento completado con \u00e9xito. Modelo guardado.", "timestamp": 1732150737.119971, "uuid": "07876128566a42b2b25485fdc1aaeea8"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Datos de prueba guardados en data/test_data.csv.", "timestamp": 1732150737.138307, "uuid": "bc9fae9562294084b62b54795052c0d8"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Prueba pasada: El modelo y los datos de prueba se guardaron correctamente.", "timestamp": 1732150737.242289, "uuid": "6d334cac36ee44afaef4e5ebb9eff9ca"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "--------------------------------------------------------------", "timestamp": 1732150737.246003, "uuid": "db3512193ce0461f84c1ae4960113af3"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "1/1 tests passed.", "timestamp": 1732150737.24962, "uuid": "3edaaabfabdd4cd7b21378b741175cf0"}
+INFO:heart_failure_pipeline/1/20241121T000000/train_model:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Finish executing block with BlockExecutor.", "timestamp": 1732150737.252287, "uuid": "67bb21aa1c8e4ae88574e959b49c8aaa"}
+INFO:heart_failure_pipeline/1/20241121T000000:{"block_run_id": 3, "block_uuid": "train_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "level": "INFO", "message": "BlockRun 3 (block_uuid: train_model) completes.", "timestamp": 1732150737.328309, "uuid": "1fc20d03406042338a2a81387a6e6652"}
+Run worker for job block_run_3
+[Process 143] Worker pool size: 1
+[Process 143] Worker pool size: 1
+[Process 143] Worker pool size: 1
+[Process 143] Worker pool size: 1
+[Process 143] Worker pool size: 0
+INFO:mage_ai.api.logging:[2024-11-21T00:59:01.696198][api.views] Action: list variables heart_failure_pipeline pipelines heart_failure_pipeline
+INFO:mage_ai.api.logging:[2024-11-21T00:59:01.697194][api.views] Latency: 0.0650 seconds
+INFO:tornado.access:304 GET /api/pipelines/heart_failure_pipeline/variables?global_only=true&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 75.48ms
+INFO:mage_ai.api.logging:[2024-11-21T00:59:01.747313][api.views] Action: list secrets None  
+INFO:mage_ai.api.logging:[2024-11-21T00:59:01.747689][api.views] Latency: 0.0462 seconds
+INFO:tornado.access:304 GET /api/secrets?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 119.99ms
+INFO:mage_ai.api.logging:[2024-11-21T00:59:01.784180][api.views] Action: list global_data_products None  
+INFO:mage_ai.api.logging:[2024-11-21T00:59:01.784612][api.views] Latency: 0.0355 seconds
+INFO:tornado.access:304 GET /api/global_data_products?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 156.95ms
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: [1]
+/bin/sh: 1: free: not found
+INFO:heart_failure_pipeline/1/20241121T000000:{"cpu": 3.01025390625, "cpu_total": 8, "cpu_usage": 0.37628173828125, "memory": null, "memory_total": null, "memory_usage": null, "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "level": "INFO", "message": "Pipeline heart_failure_pipeline for run 1 in schedule 1 is alive.", "timestamp": 1732150742.608022, "uuid": "af1f8722ef4d42c3b4db26337599ea49"}
+Command 'free -t -m' returned non-zero exit status 127.
+[ProcessQueue] Enqueue job block_run_4
+[Process 168] Worker pool size: 0
+INFO:heart_failure_pipeline/1/20241121T000000:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "level": "INFO", "message": "Execute PipelineRun 1, BlockRun 4: pipeline heart_failure_pipeline block predict_model", "timestamp": 1732150743.049742, "uuid": "81147a8c4ec24ca69592afc2a6bf9bf1"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Start executing block with BlockExecutor.", "timestamp": 1732150743.054822, "uuid": "7ccd5cbf69084fb8b8cef4cd99a3593f"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Cargando los datos de prueba...", "timestamp": 1732150743.085006, "uuid": "eaf12f2c38474ab88d6040005c7595ce"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Cargando el modelo entrenado...", "timestamp": 1732150743.108846, "uuid": "a65203e234074d1d8607232c6ee563c5"}
+INFO:mage_ai.api.logging:[2024-11-21T00:59:03.189946][api.views] Action: detail git_branches test  
+INFO:mage_ai.api.logging:[2024-11-21T00:59:03.190888][api.views] Latency: 0.6326 seconds
+INFO:tornado.access:304 GET /api/git_branches/test?_format=with_basic_details&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 645.02ms
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Generando predicciones...", "timestamp": 1732150743.316188, "uuid": "54547ab3537240499902db3137b46f24"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Vista previa de predicciones:", "timestamp": 1732150743.331852, "uuid": "a3a4a24c3c0e4a909a469a5d465e6549"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "   Age  Sex  ChestPainType  ...  ST_Slope  HeartDisease  Predictions", "timestamp": 1732150743.350883, "uuid": "b8fd6f9b55374be9a3601782ed5a9a5c"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "0   46    1              2  ...         1             1            1", "timestamp": 1732150743.351249, "uuid": "ea25971db79d4cea86ab41f08300ba16"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "1   58    1              1  ...         0             1            0", "timestamp": 1732150743.351348, "uuid": "bb054c9b890644f6a9bd7ab07f0e2c0e"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "2   60    1              2  ...         1             1            1", "timestamp": 1732150743.351426, "uuid": "c6a322f78dfd4917b0559365d38f49c0"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "3   49    1              1  ...         1             1            1", "timestamp": 1732150743.351859, "uuid": "95f505087ad2410f9128ed0ff520e987"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "4   39    0              1  ...         1             0            0", "timestamp": 1732150743.352183, "uuid": "fcf62e0fca774e1dab1f33c37fe42c76"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "5   42    1              1  ...         2             0            0", "timestamp": 1732150743.352536, "uuid": "1b41db90d14d411dab306387b621a894"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "6   54    0              0  ...         0             0            0", "timestamp": 1732150743.352725, "uuid": "61bc8073a10e4dc8b06c1dfd63c69c47"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "7   38    0              2  ...         1             1            1", "timestamp": 1732150743.35323, "uuid": "71d2ba3676c64e78807168ef0d91170c"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "8   51    0              1  ...         0             0            0", "timestamp": 1732150743.35343, "uuid": "d619ae2fb4a942d98be1a4d0c6131a1b"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "9   58    1              2  ...         1             1            1", "timestamp": 1732150743.353754, "uuid": "44586d21729b4eb2aaa626e42ab0c9bb"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "", "timestamp": 1732150743.354057, "uuid": "1857d733ee774366a4e525c842aead51"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "[10 rows x 13 columns]", "timestamp": 1732150743.354329, "uuid": "99afa45e293e48b1b5df636d1de632aa"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Guardando predicciones en data/predictions.csv...", "timestamp": 1732150743.354906, "uuid": "fcb7bc7523ca4239b731c8cd2d5cdc5a"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Predicciones generadas y guardadas con \u00e9xito.", "timestamp": 1732150743.358423, "uuid": "e64a211e6d3c47eeacc99566b677410d"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Prueba pasada: El archivo de predicciones se gener\u00f3 correctamente y contiene las columnas necesarias.", "timestamp": 1732150743.366174, "uuid": "5b316ad84b71423b8814f6a550daf813"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "--------------------------------------------------------------", "timestamp": 1732150743.366624, "uuid": "a372e5a3af47493d92420675d70173e4"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "1/1 tests passed.", "timestamp": 1732150743.36685, "uuid": "1b1d96b2f835452180ed75bdcb3ea215"}
+INFO:heart_failure_pipeline/1/20241121T000000/predict_model:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Finish executing block with BlockExecutor.", "timestamp": 1732150743.367122, "uuid": "028edb58040342038c1451024429f99d"}
+INFO:heart_failure_pipeline/1/20241121T000000:{"block_run_id": 4, "block_uuid": "predict_model", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "level": "INFO", "message": "BlockRun 4 (block_uuid: predict_model) completes.", "timestamp": 1732150743.384405, "uuid": "630be826b4cc4ef1af480dacd7f7ebb4"}
+Run worker for job block_run_4
+[Process 168] Worker pool size: 0
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: [1]
+/bin/sh: 1: free: not found
+INFO:heart_failure_pipeline/1/20241121T000000:{"cpu": 3.10693359375, "cpu_total": 8, "cpu_usage": 0.38836669921875, "memory": null, "memory_total": null, "memory_usage": null, "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "level": "INFO", "message": "Pipeline heart_failure_pipeline for run 1 in schedule 1 is alive.", "timestamp": 1732150753.055091, "uuid": "fe5f05ea66c44309a169c413b040d88f"}
+Command 'free -t -m' returned non-zero exit status 127.
+[ProcessQueue] Enqueue job block_run_5
+[Process 188] Worker pool size: 0
+INFO:heart_failure_pipeline/1/20241121T000000:{"block_run_id": 5, "block_uuid": "etl_logs", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "level": "INFO", "message": "Execute PipelineRun 1, BlockRun 5: pipeline heart_failure_pipeline block etl_logs", "timestamp": 1732150753.376671, "uuid": "0a9307faf4984ed8bf6d1bec4aa99c15"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_logs:{"block_run_id": 5, "block_uuid": "etl_logs", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Start executing block with BlockExecutor.", "timestamp": 1732150753.428002, "uuid": "d102ca2d02884cc4983bc655376087a3"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_logs:{"block_run_id": 5, "block_uuid": "etl_logs", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Conectando a la base de datos en heartDB:5432...", "timestamp": 1732150754.01787, "uuid": "2406eb52d88e46308f64cfbf77e75942"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_logs:{"block_run_id": 5, "block_uuid": "etl_logs", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Logs de predicci\u00f3n insertados en la base de datos con \u00e9xito.", "timestamp": 1732150754.195759, "uuid": "de89a113788b43d6809fb080febdc9e0"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_logs:{"block_run_id": 5, "block_uuid": "etl_logs", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Prueba pasada: Se encontraron 168 registros en la tabla prediction_logs.", "timestamp": 1732150754.253676, "uuid": "b466894f18054abca755c64dc38077f2"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_logs:{"block_run_id": 5, "block_uuid": "etl_logs", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "--------------------------------------------------------------", "timestamp": 1732150754.254122, "uuid": "08911c54fc304d4ba75c36464b293851"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_logs:{"block_run_id": 5, "block_uuid": "etl_logs", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "1/1 tests passed.", "timestamp": 1732150754.254278, "uuid": "b307319cd4ce4ed7a586567c300d8cda"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_logs:{"block_run_id": 5, "block_uuid": "etl_logs", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Finish executing block with BlockExecutor.", "timestamp": 1732150754.254567, "uuid": "be9e46d2a6664e6993ddecf5047e8403"}
+INFO:heart_failure_pipeline/1/20241121T000000:{"block_run_id": 5, "block_uuid": "etl_logs", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "level": "INFO", "message": "BlockRun 5 (block_uuid: etl_logs) completes.", "timestamp": 1732150754.330149, "uuid": "e020cc44fc8e47129acac807d24a9715"}
+Run worker for job block_run_5
+[Process 188] Worker pool size: 1
+[Process 188] Worker pool size: 0
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: [1]
+/bin/sh: 1: free: not found
+INFO:heart_failure_pipeline/1/20241121T000000:{"cpu": 3.26171875, "cpu_total": 8, "cpu_usage": 0.40771484375, "memory": null, "memory_total": null, "memory_usage": null, "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "level": "INFO", "message": "Pipeline heart_failure_pipeline for run 1 in schedule 1 is alive.", "timestamp": 1732150762.460239, "uuid": "57d57c46d2ef4d5b8a5a6b2fc948e71d"}
+Command 'free -t -m' returned non-zero exit status 127.
+[ProcessQueue] Enqueue job block_run_6
+[Process 202] Worker pool size: 0
+INFO:heart_failure_pipeline/1/20241121T000000:{"block_run_id": 6, "block_uuid": "etl_evaluations", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "level": "INFO", "message": "Execute PipelineRun 1, BlockRun 6: pipeline heart_failure_pipeline block etl_evaluations", "timestamp": 1732150762.743012, "uuid": "f457fab46c0c43869140fee7a4e5613c"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_evaluations:{"block_run_id": 6, "block_uuid": "etl_evaluations", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Start executing block with BlockExecutor.", "timestamp": 1732150762.766731, "uuid": "b747292e53f844ef84186020e6a05f89"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_evaluations:{"block_run_id": 6, "block_uuid": "etl_evaluations", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Conectando a la base de datos en heartDB:5432...", "timestamp": 1732150762.915668, "uuid": "355d3e0c93874e32b0728eb5e5a15956"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_evaluations:{"block_run_id": 6, "block_uuid": "etl_evaluations", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Se encontraron 168 registros en `prediction_logs`.", "timestamp": 1732150762.96651, "uuid": "8c26441565fe4a1c9507b1d20ede9da7"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_evaluations:{"block_run_id": 6, "block_uuid": "etl_evaluations", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Advertencia: 'HeartDisease' no est\u00e1 presente en el registro: {'Age': 40, 'Sex': 1, 'MaxHR': 160, 'Oldpeak': 1.0, 'ST_Slope': 1, 'FastingBS': 0, 'RestingBP': 120, 'RestingECG': 0, 'Cholesterol': 200, 'ChestPainType': 0, 'ExerciseAngina': 0}", "timestamp": 1732150762.966831, "uuid": "838c4fb1a6454a6ab3b94f2a2eb7a333"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_evaluations:{"block_run_id": 6, "block_uuid": "etl_evaluations", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Advertencia: 'HeartDisease' no est\u00e1 presente en el registro: {'Age': 40, 'Sex': 1, 'MaxHR': 160, 'Oldpeak': 1.0, 'ST_Slope': 1, 'FastingBS': 0, 'RestingBP': 120, 'RestingECG': 0, 'Cholesterol': 200, 'ChestPainType': 0, 'ExerciseAngina': 0}", "timestamp": 1732150762.966988, "uuid": "428e7b11c69b4fd6b60d6784686a45ad"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_evaluations:{"block_run_id": 6, "block_uuid": "etl_evaluations", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Advertencia: 'HeartDisease' no est\u00e1 presente en el registro: {'Age': 40, 'Sex': 1, 'MaxHR': 160, 'Oldpeak': 1.0, 'ST_Slope': 1, 'FastingBS': 0, 'RestingBP': 120, 'RestingECG': 0, 'Cholesterol': 200, 'ChestPainType': 0, 'ExerciseAngina': 0}", "timestamp": 1732150762.967192, "uuid": "c387dfc4f7934ce7832cf346001f434a"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_evaluations:{"block_run_id": 6, "block_uuid": "etl_evaluations", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Advertencia: 'HeartDisease' no est\u00e1 presente en el registro: {'Age': 40, 'Sex': 1, 'MaxHR': 160, 'Oldpeak': 1.0, 'ST_Slope': 1, 'FastingBS': 0, 'RestingBP': 120, 'RestingECG': 0, 'Cholesterol': 200, 'ChestPainType': 0, 'ExerciseAngina': 0}", "timestamp": 1732150762.967556, "uuid": "53011afa27a34ef5bc9c08e36ef36b30"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_evaluations:{"block_run_id": 6, "block_uuid": "etl_evaluations", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Advertencia: 'HeartDisease' no est\u00e1 presente en el registro: {'Age': 40, 'Sex': 1, 'MaxHR': 160, 'Oldpeak': 1.0, 'ST_Slope': 1, 'FastingBS': 0, 'RestingBP': 120, 'RestingECG': 0, 'Cholesterol': 200, 'ChestPainType': 0, 'ExerciseAngina': 0}", "timestamp": 1732150762.967682, "uuid": "5c6c5d97321741718ac74d494544fbf4"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_evaluations:{"block_run_id": 6, "block_uuid": "etl_evaluations", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Advertencia: 'HeartDisease' no est\u00e1 presente en el registro: {'Age': 40, 'Sex': 1, 'MaxHR': 160, 'Oldpeak': 1.0, 'ST_Slope': 1, 'FastingBS': 0, 'RestingBP': 120, 'RestingECG': 0, 'Cholesterol': 200, 'ChestPainType': 0, 'ExerciseAngina': 0}", "timestamp": 1732150762.967787, "uuid": "56c79622fa7a464998f222a7cda4c18d"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_evaluations:{"block_run_id": 6, "block_uuid": "etl_evaluations", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Advertencia: 'HeartDisease' no est\u00e1 presente en el registro: {'Age': 40, 'Sex': 1, 'MaxHR': 160, 'Oldpeak': 1.0, 'ST_Slope': 1, 'FastingBS': 0, 'RestingBP': 120, 'RestingECG': 0, 'Cholesterol': 200, 'ChestPainType': 0, 'ExerciseAngina': 0}", "timestamp": 1732150762.96794, "uuid": "6c0bbf167bdb4061a955650218083df3"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_evaluations:{"block_run_id": 6, "block_uuid": "etl_evaluations", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "M\u00e9tricas calculadas: {'auc': 0.646234488660676, 'precision': 0.8425925925925926, 'recall': 0.7398373983739838, 'accuracy': 0.6956521739130435}", "timestamp": 1732150763.038192, "uuid": "45a601f4ec2047b3b0a574df407b0483"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_evaluations:{"block_run_id": 6, "block_uuid": "etl_evaluations", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "M\u00e9tricas insertadas en la tabla `evaluations` con \u00e9xito.", "timestamp": 1732150763.050769, "uuid": "40afbd8409b84b90b73fa3530644dc34"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_evaluations:{"block_run_id": 6, "block_uuid": "etl_evaluations", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Prueba pasada: Se encontraron 7 registros en la tabla `evaluations`.", "timestamp": 1732150763.108158, "uuid": "20915e64fa7a4edc988098021b9f3c34"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_evaluations:{"block_run_id": 6, "block_uuid": "etl_evaluations", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "--------------------------------------------------------------", "timestamp": 1732150763.109257, "uuid": "9f4d593441ca4ee7b2c56642ba58332b"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_evaluations:{"block_run_id": 6, "block_uuid": "etl_evaluations", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "1/1 tests passed.", "timestamp": 1732150763.109503, "uuid": "baeb96384a4d45c9960afe37caf4cf42"}
+INFO:heart_failure_pipeline/1/20241121T000000/etl_evaluations:{"block_run_id": 6, "block_uuid": "etl_evaluations", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "block_type": "transformer", "level": "INFO", "message": "Finish executing block with BlockExecutor.", "timestamp": 1732150763.111139, "uuid": "cb1bcdba00a94146980e581c921d0794"}
+INFO:heart_failure_pipeline/1/20241121T000000:{"block_run_id": 6, "block_uuid": "etl_evaluations", "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "level": "INFO", "message": "BlockRun 6 (block_uuid: etl_evaluations) completes.", "timestamp": 1732150763.158454, "uuid": "3210ddf9c7fc4d639144ca9af5190ec5"}
+Run worker for job block_run_6
+[Process 202] Worker pool size: 0
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: [1]
+/bin/sh: 1: free: not found
+INFO:heart_failure_pipeline/1/20241121T000000:{"cpu": 3.32373046875, "cpu_total": 8, "cpu_usage": 0.41546630859375, "memory": null, "memory_total": null, "memory_usage": null, "pipeline_run_id": 1, "pipeline_schedule_id": 1, "pipeline_uuid": "heart_failure_pipeline", "hostname": "587af8e0b84a", "level": "INFO", "message": "Pipeline heart_failure_pipeline for run 1 in schedule 1 is alive.", "timestamp": 1732150772.866886, "uuid": "423b575610d04bbabb44f31602e3ad40"}
 INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
 INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
-INFO:mage_ai.api.logging:[2024-11-20T23:22:25.531167][api.views] Action: list global_data_products None  
-INFO:mage_ai.api.logging:[2024-11-20T23:22:25.531669][api.views] Latency: 0.0119 seconds
-INFO:tornado.access:304 GET /api/global_data_products?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 16.58ms
-INFO:mage_ai.api.logging:[2024-11-20T23:22:25.541132][api.views] Action: list variables heart_failure_pipeline pipelines heart_failure_pipeline
-INFO:mage_ai.api.logging:[2024-11-20T23:22:25.541254][api.views] Latency: 0.0079 seconds
-INFO:tornado.access:304 GET /api/pipelines/heart_failure_pipeline/variables?global_only=true&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 23.43ms
-INFO:mage_ai.api.logging:[2024-11-20T23:22:25.543890][api.views] Action: list secrets None  
-INFO:mage_ai.api.logging:[2024-11-20T23:22:25.543976][api.views] Latency: 0.0023 seconds
-INFO:tornado.access:304 GET /api/secrets?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 25.44ms
-INFO:mage_ai.api.logging:[2024-11-20T23:22:26.425503][api.views] Action: detail git_branches test  
-INFO:mage_ai.api.logging:[2024-11-20T23:22:26.425711][api.views] Latency: 0.0122 seconds
-INFO:tornado.access:304 GET /api/git_branches/test?_format=with_basic_details&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 13.26ms
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:tornado.access:304 GET / (172.19.0.1) 173.47ms
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:tornado.access:304 GET /_next/static/css/18782af6d2c4e826.css (172.19.0.1) 229.87ms
+INFO:tornado.access:200 GET /_next/static/chunks/framework-ea07653270784974.js (172.19.0.1) 16.63ms
+INFO:tornado.access:200 GET /_next/static/chunks/webpack-b9a067f3bd0a3a05.js (172.19.0.1) 24.78ms
+INFO:tornado.access:304 GET /_next/static/chunks/main-f39b6301263551db.js (172.19.0.1) 58.57ms
+INFO:tornado.access:200 GET /_next/static/pLWT6Sqd09xYpufCVIqnz/_buildManifest.js (172.19.0.1) 68.23ms
+INFO:tornado.access:304 GET /_next/static/chunks/pages/index-00ff043e2b1e43f2.js (172.19.0.1) 73.55ms
+INFO:tornado.access:200 GET /_next/static/pLWT6Sqd09xYpufCVIqnz/_ssgManifest.js (172.19.0.1) 79.09ms
+INFO:tornado.access:304 GET /_next/static/chunks/pages/_app-5bdff745074fb350.js (172.19.0.1) 101.37ms
+INFO:mage_ai.api.logging:[2024-11-21T01:03:55.723584][api.views] Action: list statuses None  
+INFO:mage_ai.api.logging:[2024-11-21T01:03:55.737538][api.views] Latency: 1.8653 seconds
+INFO:tornado.access:304 GET /api/statuses?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 1925.45ms
+INFO:mage_ai.api.logging:[2024-11-21T01:03:56.358312][api.views] Action: list projects None  
+INFO:mage_ai.api.logging:[2024-11-21T01:03:56.358464][api.views] Latency: 0.5444 seconds
+INFO:tornado.access:304 GET /api/projects?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 584.93ms
+INFO:tornado.access:200 GET /_next/static/chunks/3548-b2c5edfb710886a6.js (172.19.0.1) 6.05ms
+INFO:tornado.access:200 GET /_next/static/chunks/2996-ffd19c1564306530.js (172.19.0.1) 12.21ms
+INFO:tornado.access:200 GET /_next/static/chunks/4241-88dd28b784f9aac7.js (172.19.0.1) 43.28ms
+INFO:tornado.access:200 GET /_next/static/chunks/4168-f97c0dd41e6f2b34.js (172.19.0.1) 46.97ms
+INFO:tornado.access:200 GET /_next/static/chunks/6065-0893edae462093a7.js (172.19.0.1) 124.76ms
+INFO:tornado.access:200 GET /_next/static/chunks/5627-d5e559859dd0e1e0.js (172.19.0.1) 4.48ms
+INFO:tornado.access:200 GET /_next/static/chunks/pages/overview-69af3253ad0d0d89.js (172.19.0.1) 5.43ms
+INFO:tornado.access:304 GET /_next/static/chunks/2714-4ad4b9ab70fe921f.js (172.19.0.1) 9.04ms
+INFO:tornado.access:304 GET /_next/static/chunks/1557-1ad0c64c2d08e569.js (172.19.0.1) 11.38ms
+INFO:tornado.access:200 GET /_next/static/chunks/8095-aae2b7f0865f00a3.js (172.19.0.1) 20.36ms
+INFO:tornado.access:304 GET /_next/static/chunks/125-5337af3c1566ed8e.js (172.19.0.1) 13.97ms
+INFO:tornado.access:304 GET /_next/static/chunks/1799-33afa1735e3b9e98.js (172.19.0.1) 16.95ms
+INFO:tornado.access:304 GET /_next/static/chunks/140-3a57c1c5d23f15d8.js (172.19.0.1) 24.73ms
+INFO:tornado.access:304 GET /_next/static/chunks/29107295-c0a511dcab14f9e9.js (172.19.0.1) 32.64ms
+INFO:tornado.access:304 GET /_next/static/chunks/8023-ba84a62148ef4d48.js (172.19.0.1) 50.96ms
+INFO:tornado.access:304 GET /_next/static/chunks/523-f571fbd8d2f28011.js (172.19.0.1) 5.19ms
+INFO:tornado.access:304 GET /_next/static/chunks/6362-78fe21a880d615f1.js (172.19.0.1) 7.86ms
+INFO:tornado.access:304 GET /_next/static/chunks/5831-ceee68103fba06ca.js (172.19.0.1) 4.81ms
+INFO:mage_ai.api.logging:[2024-11-21T01:03:59.018804][api.views] Action: list pipeline_runs None  
+INFO:mage_ai.api.logging:[2024-11-21T01:03:59.021594][api.views] Latency: 2.3365 seconds
+INFO:tornado.access:200 GET /api/pipeline_runs?_limit=50&include_pipeline_type=1&order_by[]=created_at%20desc&start_timestamp=1732147200&status=failed&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 2368.04ms
+INFO:mage_ai.api.logging:[2024-11-21T01:04:00.187484][api.views] Action: detail monitor_stats pipeline_run_count  
+INFO:mage_ai.api.logging:[2024-11-21T01:04:00.187747][api.views] Latency: 1.1608 seconds
+INFO:tornado.access:200 GET /api/monitor_stats/pipeline_run_count?group_by_pipeline_type=1&start_time=2024-11-21T00:00:00.000Z&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 1165.38ms
+INFO:tornado.access:200 GET /fonts/Fira_Code/ttf/FiraCode-Regular.ttf (172.19.0.1) 73.90ms
+INFO:tornado.access:304 GET /fonts/Roboto/Roboto-Bold.ttf (172.19.0.1) 116.52ms
+INFO:tornado.access:304 GET /fonts/Roboto/Roboto-Medium.ttf (172.19.0.1) 142.63ms
+INFO:tornado.access:304 GET /fonts/Roboto/Roboto-Regular.ttf (172.19.0.1) 154.93ms
+INFO:tornado.access:200 GET /images/blocks/grey_block.webp (172.19.0.1) 114.35ms
+INFO:tornado.access:304 GET /fonts/Fira_Code/ttf/FiraCode-Bold.ttf (172.19.0.1) 146.93ms
+INFO:tornado.access:200 GET /_next/static/chunks/7966-163da2621b8c987c.js (172.19.0.1) 19.61ms
+INFO:tornado.access:200 GET /_next/static/chunks/5544-3427bdf859d76f34.js (172.19.0.1) 32.23ms
+INFO:tornado.access:200 GET /_next/static/chunks/pages/pipeline-runs-5f8c100e648efa8a.js (172.19.0.1) 44.59ms
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.api.logging:[2024-11-21T01:04:10.396616][api.views] Action: detail git_branches test  
+INFO:mage_ai.api.logging:[2024-11-21T01:04:10.397874][api.views] Latency: 0.1457 seconds
+INFO:tornado.access:200 GET /api/git_branches/test?_format=with_basic_details&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 158.50ms
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.api.logging:[2024-11-21T01:04:17.723868][api.views] Action: list files None  
+INFO:mage_ai.api.logging:[2024-11-21T01:04:17.725794][api.views] Latency: 0.1011 seconds
+INFO:tornado.access:304 GET /api/files?include_pipeline_count=true&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 117.77ms
+INFO:mage_ai.api.logging:[2024-11-21T01:04:17.879135][api.views] Action: list statuses None  
+INFO:mage_ai.api.logging:[2024-11-21T01:04:17.880096][api.views] Latency: 0.0319 seconds
+INFO:tornado.access:304 GET /api/statuses?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 35.38ms
+INFO:tornado.access:304 GET /pipelines/heart_failure_pipeline/edit?sideview=tree (172.19.0.1) 5.10ms
+INFO:terminado.websocket:Websocket closed
+INFO:mage_ai.api.logging:[2024-11-21T01:04:18.947036][api.views] Action: list statuses None  
+INFO:mage_ai.api.logging:[2024-11-21T01:04:18.947233][api.views] Latency: 0.0093 seconds
+INFO:tornado.access:304 GET /api/statuses?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 10.13ms
+INFO:mage_ai.api.logging:[2024-11-21T01:04:18.975777][api.views] Action: list projects None  
+INFO:mage_ai.api.logging:[2024-11-21T01:04:18.975949][api.views] Latency: 0.0269 seconds
+INFO:tornado.access:304 GET /api/projects?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 28.40ms
+INFO:mage_ai.server.active_kernel:Switch active kernel: python3
+INFO:mage_ai.server.active_kernel:Kernel python3 is already alive.
+INFO:tornado.access:101 GET /websocket/terminal (172.19.0.1) 26.81ms
+INFO:terminado.websocket:TermSocket.open: tty
+INFO:terminado.websocket:TermSocket.open: Opened tty
+INFO:tornado.access:101 GET /websocket/ (172.19.0.1) 12.25ms
+INFO:mage_ai.api.logging:[2024-11-21T01:04:19.458204][api.views] Action: detail pipelines heart_failure_pipeline  
+INFO:mage_ai.api.logging:[2024-11-21T01:04:19.458446][api.views] Latency: 0.3012 seconds
+INFO:tornado.access:304 GET /api/pipelines/heart_failure_pipeline?include_block_pipelines=true&includes_outputs=true&includes_outputs_spark=true&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 305.26ms
+INFO:mage_ai.api.logging:[2024-11-21T01:04:20.223054][api.views] Action: list files None  
+INFO:mage_ai.api.logging:[2024-11-21T01:04:20.223306][api.views] Latency: 0.0140 seconds
+INFO:tornado.access:304 GET /api/files?include_pipeline_count=true&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 15.14ms
+INFO:mage_ai.api.logging:[2024-11-21T01:04:20.777008][api.views] Action: list data_providers None  
+INFO:mage_ai.api.logging:[2024-11-21T01:04:20.777530][api.views] Latency: 0.1050 seconds
+INFO:tornado.access:304 GET /api/data_providers?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 107.40ms
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.api.logging:[2024-11-21T01:04:32.726782][api.views] Action: list statuses None  
+INFO:mage_ai.api.logging:[2024-11-21T01:04:32.726924][api.views] Latency: 0.0095 seconds
+INFO:tornado.access:304 GET /api/statuses?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 13.80ms
+INFO:mage_ai.api.logging:[2024-11-21T01:04:32.733094][api.views] Action: list block_templates None  
+INFO:mage_ai.api.logging:[2024-11-21T01:04:32.733956][api.views] Latency: 0.0048 seconds
+INFO:tornado.access:304 GET /api/block_templates?show_all=false&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 19.20ms
+INFO:mage_ai.api.logging:[2024-11-21T01:04:32.779637][api.views] Action: list secrets None  
+INFO:mage_ai.api.logging:[2024-11-21T01:04:32.780638][api.views] Latency: 0.0129 seconds
+INFO:tornado.access:304 GET /api/secrets?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 65.02ms
+INFO:mage_ai.api.logging:[2024-11-21T01:04:32.792058][api.views] Action: list global_data_products None  
+INFO:mage_ai.api.logging:[2024-11-21T01:04:32.792486][api.views] Latency: 0.0093 seconds
+INFO:tornado.access:304 GET /api/global_data_products?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 76.51ms
+INFO:mage_ai.api.logging:[2024-11-21T01:04:32.813660][api.views] Action: list variables heart_failure_pipeline pipelines heart_failure_pipeline
+INFO:mage_ai.api.logging:[2024-11-21T01:04:32.813787][api.views] Latency: 0.0102 seconds
+INFO:tornado.access:304 GET /api/pipelines/heart_failure_pipeline/variables?global_only=true&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 11.30ms
+INFO:mage_ai.api.logging:[2024-11-21T01:04:32.836473][api.views] Action: detail git_branches test  
+INFO:mage_ai.api.logging:[2024-11-21T01:04:32.836641][api.views] Latency: 0.0222 seconds
+INFO:tornado.access:304 GET /api/git_branches/test?_format=with_basic_details&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 33.69ms
+INFO:mage_ai.api.logging:[2024-11-21T01:04:33.004692][api.views] Action: list autocomplete_items None  
+INFO:mage_ai.api.logging:[2024-11-21T01:04:33.005135][api.views] Latency: 12.3222 seconds
+INFO:tornado.access:304 GET /api/autocomplete_items?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 12324.83ms
+INFO:mage_ai.api.logging:[2024-11-21T01:04:33.040469][api.views] Action: list kernels None  
+INFO:mage_ai.api.logging:[2024-11-21T01:04:33.040683][api.views] Latency: 0.3061 seconds
+INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 325.10ms
+INFO:mage_ai.api.logging:[2024-11-21T01:04:38.342624][api.views] Action: list kernels None  
+INFO:mage_ai.api.logging:[2024-11-21T01:04:38.346198][api.views] Latency: 0.1969 seconds
+INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 228.27ms
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.api.logging:[2024-11-21T01:04:43.560745][api.views] Action: list kernels None  
+INFO:mage_ai.api.logging:[2024-11-21T01:04:43.561534][api.views] Latency: 0.1565 seconds
+INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 164.55ms
+INFO:mage_ai.api.logging:[2024-11-21T01:04:48.707681][api.views] Action: list kernels None  
+INFO:mage_ai.api.logging:[2024-11-21T01:04:48.709880][api.views] Latency: 0.1093 seconds
+INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 116.31ms
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.api.logging:[2024-11-21T01:04:53.939359][api.views] Action: list kernels None  
+INFO:mage_ai.api.logging:[2024-11-21T01:04:53.940246][api.views] Latency: 0.1460 seconds
+INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 160.16ms
+INFO:mage_ai.api.logging:[2024-11-21T01:04:59.204435][api.views] Action: list kernels None  
+INFO:mage_ai.api.logging:[2024-11-21T01:04:59.205824][api.views] Latency: 0.1613 seconds
+INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 171.15ms
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.api.logging:[2024-11-21T01:05:04.378227][api.views] Action: list kernels None  
+INFO:mage_ai.api.logging:[2024-11-21T01:05:04.379224][api.views] Latency: 0.1135 seconds
+INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 123.75ms
+INFO:mage_ai.api.logging:[2024-11-21T01:05:09.627048][api.views] Action: list kernels None  
+INFO:mage_ai.api.logging:[2024-11-21T01:05:09.628503][api.views] Latency: 0.1846 seconds
+INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 202.92ms
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.api.logging:[2024-11-21T01:05:14.760216][api.views] Action: list kernels None  
+INFO:mage_ai.api.logging:[2024-11-21T01:05:14.761484][api.views] Latency: 0.0783 seconds
+INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 85.21ms
+INFO:mage_ai.api.logging:[2024-11-21T01:05:19.822559][api.views] Action: list kernels None  
+INFO:mage_ai.api.logging:[2024-11-21T01:05:19.823083][api.views] Latency: 0.0238 seconds
+INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 28.98ms
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.api.logging:[2024-11-21T01:05:24.896340][api.views] Action: list kernels None  
+INFO:mage_ai.api.logging:[2024-11-21T01:05:24.897034][api.views] Latency: 0.0626 seconds
+INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 65.14ms
+INFO:mage_ai.api.logging:[2024-11-21T01:05:29.939135][api.views] Action: list kernels None  
+INFO:mage_ai.api.logging:[2024-11-21T01:05:29.939425][api.views] Latency: 0.0200 seconds
+INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 22.69ms
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.api.logging:[2024-11-21T01:05:35.006667][api.views] Action: list kernels None  
+INFO:mage_ai.api.logging:[2024-11-21T01:05:35.007369][api.views] Latency: 0.0407 seconds
+INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 43.22ms
+INFO:mage_ai.api.logging:[2024-11-21T01:05:40.046950][api.views] Action: list kernels None  
+INFO:mage_ai.api.logging:[2024-11-21T01:05:40.047076][api.views] Latency: 0.0176 seconds
+INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 19.59ms
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.api.logging:[2024-11-21T01:05:45.110972][api.views] Action: list kernels None  
+INFO:mage_ai.api.logging:[2024-11-21T01:05:45.111953][api.views] Latency: 0.0369 seconds
+INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 40.23ms
+INFO:mage_ai.api.logging:[2024-11-21T01:05:50.171166][api.views] Action: list kernels None  
+INFO:mage_ai.api.logging:[2024-11-21T01:05:50.171491][api.views] Latency: 0.0242 seconds
+INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 27.53ms
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.api.logging:[2024-11-21T01:05:55.244494][api.views] Action: list kernels None  
+INFO:mage_ai.api.logging:[2024-11-21T01:05:55.245164][api.views] Latency: 0.0534 seconds
+INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 56.33ms
+INFO:mage_ai.api.logging:[2024-11-21T01:06:00.291872][api.views] Action: list kernels None  
+INFO:mage_ai.api.logging:[2024-11-21T01:06:00.292776][api.views] Latency: 0.0254 seconds
+INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 29.90ms
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.api.logging:[2024-11-21T01:06:05.443458][api.views] Action: list kernels None  
+INFO:mage_ai.api.logging:[2024-11-21T01:06:05.444782][api.views] Latency: 0.1019 seconds
+INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 109.65ms
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.api.logging:[2024-11-21T01:06:25.898939][api.views] Action: list files None  
+INFO:mage_ai.api.logging:[2024-11-21T01:06:25.899980][api.views] Latency: 0.0481 seconds
+INFO:tornado.access:304 GET /api/files?include_pipeline_count=true&api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 56.87ms
+INFO:mage_ai.api.logging:[2024-11-21T01:06:27.584881][api.views] Action: list kernels None  
+INFO:mage_ai.api.logging:[2024-11-21T01:06:27.585146][api.views] Latency: 0.0589 seconds
+INFO:tornado.access:200 GET /api/kernels?api_key=zkWlN0PkIKSN0C11CfUHUj84OT5XOJ6tDZ6bDRO2 (172.19.0.1) 60.83ms
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
+INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
+INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
 INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []
 INFO:mage_ai.server.scheduler_manager:Scheduler status: running.
 INFO:mage_ai.orchestration.pipeline_scheduler_original:Active pipeline runs: []

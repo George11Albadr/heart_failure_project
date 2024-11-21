@@ -1,38 +1,54 @@
-#/Users/georgealbadr/GitHub/heart_failure_project/docker-compose.yml
+version: "3.8"
+
 services:
   mageai:
     build:
       context: .
-      dockerfile: docker/Dockerfile
+      dockerfile: docker/Dockerfile  # Dockerfile de MageAI
     image: mageai/mageai:latest
-    command: bash /app/start.sh  # Script de inicio que maneja MageAI y Swagger
+    command: bash /app/start.sh  # Script que inicia MageAI y FastAPI
     env_file:
       - .env  # Archivo de variables de entorno
     environment:
-      USER_CODE_PATH: /home/src/${PROJECT_NAME}  # Ruta del proyecto en el contenedor
-      ENV: ${ENV}  # Variable para definir entorno (desarrollo, producción, etc.)
+      USER_CODE_PATH: /home/src/${PROJECT_NAME}  # Ruta del proyecto
+      ENV: ${ENV}  # Configuración del entorno (local, producción, etc.)
     ports:
       - "6789:6789"  # Puerto para MageAI
-      - "8000:8000"  # Puerto para Swagger API
+      - "8000:8000"  # Puerto para FastAPI y Swagger
     volumes:
-      - ./app:/app  # Sincroniza la carpeta `app` con el contenedor
-      - ./docker/requirements.txt:/app/requirements.txt  # Sincroniza el archivo de requerimientos
-      - ./models:/app/models
-      - ./data:/app/data
-    restart: on-failure:5  # Reinicia el contenedor en caso de fallas
-  
-  heartDB:
-    image: postgres:13  # Versión específica de PostgreSQL
-    restart: always  # Reinicia siempre que sea necesario
-    environment:
-      POSTGRES_PASSWORD: test123  # Contraseña de usuario PostgreSQL
-      POSTGRES_USER: test  # Usuario de PostgreSQL
-      POSTGRES_DB: heartDB  # Base de datos inicial
-    ports:
-      - "5434:5432"  # Mapea el puerto 5432 del contenedor al 5434 de la máquina local
-    volumes:
-      - postgres_data:/var/lib/postgresql/data  # Persiste los datos de PostgreSQL
+      - ./app:/app  # Código de MageAI y FastAPI
+      - ./docker/requirements.txt:/app/requirements.txt  # Dependencias de Python
+      - ./models:/app/models  # Modelos pre-entrenados
+      - ./data:/app/data  # Datos para procesar
+    restart: on-failure:5  # Reinicia hasta 5 veces en caso de error
 
+  heartDB:
+    image: postgres:13  # Base de datos PostgreSQL
+    restart: always
+    env_file:
+      - .env  # Archivo de variables de entorno
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}  # Contraseña para la base de datos
+      POSTGRES_USER: ${DB_USER}  # Usuario para la base de datos
+      POSTGRES_DB: ${DB_NAME}  # Nombre de la base de datos
+    ports:
+      - "5434:5432"  # Puerto mapeado para PostgreSQL
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Persistencia de datos
+
+  shinyapp:
+    build:
+      context: ./dashboard_shiny
+      dockerfile: Dockerfile  # Dockerfile de la app Shiny
+    image: shinyapp/shiny:latest
+    ports:
+      - "3838:3838"  # Puerto para la app Shiny
+    volumes:
+      - ./dashboard_shiny:/srv/shiny-server  # Código de Shiny
+    environment:
+      - ENV=${ENV}  # Variable para entorno local/producción
+    restart: unless-stopped
 
 volumes:
-  postgres_data:  # Define el volumen para la base de datos
+  postgres_data:
+    name: heart_db_data  # Volumen nombrado para PostgreSQL

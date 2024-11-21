@@ -11,8 +11,8 @@ server <- function(input, output, session) {
   db_conn <- dbConnect(
     RPostgres::Postgres(),
     dbname = "heartDB",
-    host = "localhost",
-    port = 5434,
+    host = "heartDB",
+    port = 5432,
     user = "test",
     password = "test123"
   )

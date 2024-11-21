@@ -25,15 +25,16 @@ COPY docker/requirements.txt .
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-# Copia el resto del proyecto al contenedor (ajustado para incluir `../app`)
+# Copia el resto del proyecto al contenedor
 COPY ./app /app
-# Copia el resto del proyecto al contenedor, incluyendo la carpeta `models`
+
+# Copia la carpeta `models` al contenedor
 COPY ./models /app/models
 
 # Asegúrate de que el archivo `start.sh` tenga permisos de ejecución
 RUN chmod +x /app/start.sh
 
-# Exponer los puertos necesarios
+# Exponer los puertos necesarios para MageAI y FastAPI
 EXPOSE 8000  
 EXPOSE 5434  
 EXPOSE 6789  

@@ -1,17 +1,27 @@
 # Usa una base con R y soporte para Shiny
 FROM rocker/r-ver:4.3.1
 
-# Instalar dependencias necesarias para la base de datos y Shiny
+# Instalar dependencias necesarias para la base de datos y gráficos
 RUN apt-get update && apt-get install -y \
     libcurl4-gnutls-dev \
     libcairo2-dev \
     libxt-dev \
     libssl-dev \
     libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
+    libxml2-dev \
+    libjpeg-dev \
+    libpng-dev \
+    libfontconfig1-dev \
+    libfreetype6-dev \
+    libtiff5-dev \
+    libgdal-dev \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Configurar el repositorio CRAN
+RUN echo 'options(repos = c(CRAN = "https://cloud.r-project.org"))' >> /usr/local/lib/R/etc/Rprofile.site
 
 # Instalar paquetes de R necesarios
-RUN R -e "install.packages(c('shiny', 'DBI', 'RPostgres'), repos = 'http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('shiny', 'shinydashboard', 'DBI', 'RPostgres', 'ggplot2', 'DT', 'httr', 'jsonlite', 'lubridate'), repos = 'http://cran.rstudio.com/')"
 
 # Configurar el directorio de trabajo y copiar la aplicación
 WORKDIR /app
