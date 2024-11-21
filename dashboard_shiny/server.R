@@ -302,7 +302,7 @@ output$accuracy_plot <- renderPlot({
       print(jsonlite::toJSON(user_input, auto_unbox = TRUE))
       
       # Endpoint de predicción
-      mage_endpoint <- "http://0.0.0.0:8000/predict"
+      mage_endpoint <- "http://3.85.11.181:8000/predict"
       
       # Enviar solicitud al endpoint de Mage.ai
       response <- httr::POST(
